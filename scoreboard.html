@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="de"><head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
 	<meta charset="utf-8">
@@ -39,7 +39,7 @@
 	</div>
 	
 	<div class="row">
-		<div id="history" class="hist">Verlauf: </div>
+		<div id="history" class="hist">History: </div>
    </div>
 </div>
 <div class="table">
@@ -50,14 +50,14 @@
 			<button id="plus2red" class="red button" onclick="increaseRed(2)">+2</button>
 			<button id="plus4red" class="red button" onclick="increaseRed(4)">+4</button>
 			<button id="plus5red" class="red button" onclick="increaseRed(5)">+5</button>
-			<button id="warnred" class="red longbutton" onclick="warnRed()">Verwarnung</button>
+			<button id="warnred" class="red longbutton" onclick="warnRed()">Warning</button>
    	</div>
    	<div class="cell gray">
 			<button id="plus1blue" class="blue button" onclick="increaseBlue(1)">+1</button>
 			<button id="plus2blue" class="blue button" onclick="increaseBlue(2)">+2</button>
 			<button id="plus4blue" class="blue button" onclick="increaseBlue(4)">+4</button>
 			<button id="plus5blue" class="blue button" onclick="increaseBlue(5)">+5</button>
-			<button id="warnblue" class="blue longbutton" onclick="warnBlue()">Verwarnung</button>
+			<button id="warnblue" class="blue longbutton" onclick="warnBlue()">Warning</button>
    	</div>
    </div>
 
@@ -83,9 +83,9 @@
 	   <div class="cell gray">
 		   <button id="start" onclick="startTimer()">Start</button>
 			<button id="pause" onclick="pauseTimer()" style="visibility: hidden;">Pause</button>
-			<button id="resume" onclick="resumeTimer()" style="visibility: hidden;">Weiter</button>
-			<button id="reset" class="reset" onclick="resetTimer()" style="visibility: hidden;">nächste Runde</button>
-			<button id="next" class="reset" onclick="nextFight()">neuer Kampf</button>
+			<button id="resume" onclick="resumeTimer()" style="visibility: hidden;">Continue</button>
+			<button id="reset" class="reset" onclick="resetTimer()" style="visibility: hidden;">Next round</button>
+			<button id="next" class="reset" onclick="nextFight()">New fight</button>
    	</div>
    </div>
 </div>
@@ -105,7 +105,6 @@
         function increaseBlue(number){
         		document.getElementById('blue_points').innerHTML = parseInt(document.getElementById('blue_points').innerHTML) + number;
         		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">'+number+'</span>';
-
         }
 	function warnRed(number){
         	document.getElementById('red_warn').innerHTML = 0;
@@ -125,18 +124,13 @@
         	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">-V</span>';
         	document.getElementById('stopwarnred').style.visibility = 'hidden';
         	document.getElementById('warnred').style.visibility = 'visible';
-
         }
 	function stopwarnBlue(number){
         	document.getElementById('blue_warn').innerHTML = '-';
         	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">-V</span>';
  	        document.getElementById('stopwarnblue').style.visibility = 'hidden';
         	document.getElementById('warnblue').style.visibility = 'visible';
-
         }
-
-
-
         function nextFight()
         {
           location.reload();
@@ -160,12 +154,9 @@
         		document.getElementById('resume').style.visibility = 'visible';
         		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="history black">n.R.</span>';
         }
-
-
         function startTimer() {
           document.getElementById('start').style.visibility = 'hidden';
           document.getElementById('reset').style.visibility = 'visible';
-
           
           var presentTime = document.getElementById('timer').innerHTML;
           var timeArray = presentTime.split(/[:]+/);
@@ -189,9 +180,7 @@
           		var s = checkSecond((parseInt(timeArray[1]) + 0));
           }
           
-
           var run = 1;
-
           if (m==0 && s == 00){
                 //location.reload();
                 //run=0;
@@ -211,9 +200,7 @@
           }
           document.getElementById('timer').innerHTML = m + ":" + s;
           setTimeout(startTimer, 1000);
-
         }
-
         function checkSecond(sec) {
           if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
           if (sec > 59) {sec = "00"};
