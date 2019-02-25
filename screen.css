@@ -5,6 +5,55 @@ body
 	overflow: hidden;
 	background-color:black;
 }
+
+wrapper {
+  width:100%;
+  margin: 0 auto;
+}
+
+#headder {
+  background-color:lightblue;
+}
+
+#main {
+  background-color: lightgreen;
+  margin-right: 150px;
+}
+
+#left {
+  background-color: green;
+  width: 45%;
+  float: left;
+}
+#middle {
+  background-color: red;
+  width: 10%;
+  float: left;
+}
+#right {
+  background-color: green;
+  width: 45%;
+  float: left;
+}
+
+#history {
+  float: right;
+  width:150px;
+  background-color: yellow;
+}
+
+#footer {
+  clear: both;
+  background-color:lightblue;
+}
+
+
+
+
+
+
+
+
 div.table{
 	display: table;
 	width: 100%;
