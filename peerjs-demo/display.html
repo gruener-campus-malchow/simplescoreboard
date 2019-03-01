@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>PeerJS Test</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <style>
+        body {
+            padding: 15px;
+        }
+        #counter {
+            font-size: 64px;
+            font-family: 'Roboto', sans-serif;
+            width: 100%;
+            text-align: center;
+        }
+        .history {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+        }
+        .history_item {
+            display: inline-block;
+            padding: 2px;
+            font-style: italic;
+            font-family: 'Roboto', sans-serif;
+        }
+        .bad {
+            color: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="counter">0</div>
+    <div id="history"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+
+    <script>
+        let peer = new Peer(23057897989745);
+        let conn = peer.connect(0);
+            
+        conn.on('open', () => {
+              // nix machen
+        });
+
+        peer.on('connection', (conn) => {
+            conn.on('data', (data) => {
+                console.log(data);
+                var history = document.getElementById("history");
+                if (!isNaN(data)) {
+                    var counter = document.getElementById("counter");                  
+                    counter.innerHTML = Number(counter.innerHTML) + Number(data);
+                    history.innerHTML += '<div class="history_item">' + data + '</div>';
+                } else {
+                    history.innerHTML += '<div class="history_item bad">' + data + '</div>';
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
