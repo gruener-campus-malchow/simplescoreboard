@@ -8,36 +8,33 @@
 	</style>
 </head>
 <body>
-
-<div id="wrapper">
-  <div id="headder">
-    simplescoreboard
-  </div>
-
-  <div id="history">
-    Bereich Steuerung
-  </div>
-
-  <div id="main">
-    <div id= "left">
-        foo
-    </div>
-    <div id= "middle">
-        foo
-    </div>
-    <div id= "right">
-        foo
-    </div>
-
-     hier kommt nun der Inhalt Ihrer Website
-  </div>
-
-  <div id="footer">
-    Version 0.1
-  </div>
+<div id="headder" class="header">
+    <span style="font-size:1.25em;">GCM simplescoreboard</span>
+    powered by fbi
 </div>
 
-<div class="table">
+<div id="history" class="history">
+    Bereich History
+</div>
+
+<div id="main" class="main">
+    <div id="left" class="fighterInformation left">
+        <div class="name top red">Name1 Club1</div>
+        <div class="score bottom red">00</div>
+    </div>
+    <div id="middle" class="decoration">
+        foo
+    </div>
+    <div id="right" class="fighterInformation right">
+        <div class="score top blue">00</div>
+        <div class="name bottom blue">Name2 Club2</div>
+    </div>
+</div>
+
+<div id="playbatten" class="time"></div>
+<div class="controls"></div>
+
+<!-- div class="table">
 	
 	<div class="row">
 		<div class="red pointfield">
@@ -117,7 +114,7 @@
    	</div>
    </div>
 </div>
-<div style="visibility: hidden; display:none;" id="minute">false</div>
+<div style="visibility: hidden; display:none;" id="minute">false</div -->
 <script type="text/javascript">
         document.getElementById('resume').style.visibility = 'hidden';
         document.getElementById('pause').style.visibility = 'hidden';

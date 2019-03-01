@@ -1,12 +1,66 @@
-body
-{
-	font-size: 1.4em;
-	/*font-family: Roboto, sans-serif;*/
-	overflow: hidden;
-	background-color:black;
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
-wrapper {
+body {
+    height: 100vh;
+	font-size: 1.4em;
+    font-family: sans-serif;
+	/*background-color: #000;*/
+    background-color: #008000;
+}
+
+.header {
+    height: 5%;
+    text-align: center;
+}
+
+.history {
+    height: 95%;
+}
+
+.main {
+    height: 65%;
+}
+
+.decoration {
+    /*background-color: #64cc64;*/
+    background-color: #55ab55;
+    border-radius: 0 2em;
+}
+
+.time, .controls {
+    height: 15%;
+}
+
+.time {    
+    background-color: #cc0000;
+}
+
+.controls {
+    background-color: #cc3232;
+}
+
+.fighterInformation, .decoration {
+    height: 100%;
+}
+
+.fighterInformation .name {
+    height: 20%;
+    background-color: #fff5;
+}
+
+.fighterInformation .score {
+    height: 80%;
+}
+
+
+
+
+
+#wrapper {
   width:100%;
   margin: 0 auto;
 }
@@ -16,7 +70,7 @@ wrapper {
 }
 
 #main {
-  background-color: lightgreen;
+  /*background-color: lightgreen;*/
   margin-right: 150px;
 }
 
@@ -26,7 +80,7 @@ wrapper {
   float: left;
 }
 #middle {
-  background-color: red;
+  /*background-color: red;*/
   width: 10%;
   float: left;
 }
@@ -97,26 +151,6 @@ span.history {
 /*	margin: 5px auto;*/
 	width:50%;
 	text-align: center;
-}
-.red{
-	background-color: red;
-}
-.blue {
-	background-color: blue;
-}
-
-.black {
-	background-color: black;
-}
-
-.yellow {
-	border-radius: 10px;
-	background-color: yellow;
-}
-
-.gray {
-	border-radius: 10px;
-	background-color: Gray;
 }
 
 
