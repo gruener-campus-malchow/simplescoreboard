@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>PeerJS Test</title>
+</head>
+
+<body>
+    <input type="number" id="in">
+    <button id="btn">Send</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+
+    <script>
+        let partnerId = '23057897989745';
+
+        let peer = new Peer(7567879673456346);
+        
+        let conn = peer.connect(partnerId);
+        
+        // on open will be launch when you successfully connect to PeerServer
+        conn.on('open', () => {
+
+        });
+
+        document.getElementById('btn').addEventListener('click', () => {
+            if (conn) {
+                conn.send(document.getElementById('in').value);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
