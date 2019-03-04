@@ -27,10 +27,26 @@ body {
 
 .decoration {
     /*background-color: #64cc64;*/
+    background-color: #000000;
+    border-radius: 0 2em;
+}
+.innerdecoration {
     background-color: #55ab55;
+    height: calc(100% - 10px); 
+    width: calc(100% - 10px);
+    margin-top: 5px;
+    margin-left: 5px;
     border-radius: 0 2em;
 }
 
+.namefield{
+    background-color: #55ab55;    
+    /*background-color: #55ab55;*/
+    height: calc(100% - 10px); 
+    width: calc(100% - 10px);
+    margin-top: 5px;
+    margin-left: 5px;
+}
 .time, .controls {
     height: 15%;
 }
@@ -49,7 +65,7 @@ body {
 
 .fighterInformation .name {
     height: 20%;
-    background-color: #fff5;
+    background-color: #000000;
 }
 
 .fighterInformation .score {
