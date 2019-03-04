@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Scoreboard Remote</title>
+</head>
+
+<body>
+    <style>
+        .btn-score-red {
+            background-color: red;
+        }
+    </style>
+
+    <button class="btn-score-red" id="btn">+1</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+
+    <script>
+        let partnerId = '23057897989745';
+
+        let peer = new Peer(7567879673456346);
+        
+        let conn = peer.connect(partnerId);
+        
+        // on open will be launch when you successfully connect to PeerServer
+        conn.on('open', () => {
+
+        });
+
+        document.getElementById('btn').addEventListener('click', () => {
+            if (conn) {
+                conn.send('{"name": "score", "team": "red", "value": 1}');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

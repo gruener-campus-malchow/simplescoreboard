@@ -90,6 +90,9 @@
    </div>
 </div>
 <div style="visibility: hidden; display:none;" id="minute">false</div>
+
+<script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+
 <script type="text/javascript">
         document.getElementById('resume').style.visibility = 'hidden';
         document.getElementById('pause').style.visibility = 'hidden';
@@ -207,6 +210,33 @@
   //        if (sec > 59) {sec = "0"};
           return sec;
         }
+
+        let events = {
+            'score': (obj) => {
+                if (obj.team === 'red') {
+                    increaseRed(obj.value);
+                } else if (obj.team === 'blue') {
+                    increaseBlue(obj.value);                
+                }
+            }
+        };
+
+        let peer = new Peer(23057897989745);
+        let conn = peer.connect(0);
+
+        conn.on('open', () => {
+            
+        });
+
+        peer.on('connection', (conn) => {
+            conn.on('data', (data) => {
+                console.log(data);
+                
+                var obj = JSON.parse(data);
+
+                events[obj.name](obj);
+            });
+        });
     </script>
 
 
