@@ -99,10 +99,22 @@
         function increaseRed(number){
         		document.getElementById('red_points').innerHTML = parseInt(document.getElementById('red_points').innerHTML) + number;
         		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">'+number+'</span>';
+                if(timeout_blue != '-')
+                {
+                document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">-W</span>';
+                }
+                document.getElementById('blue_warn').innerHTML = '-';
+                document.getElementById('warnblue').style.visibility = 'visible';
         }
         function increaseBlue(number){
         		document.getElementById('blue_points').innerHTML = parseInt(document.getElementById('blue_points').innerHTML) + number;
         		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">'+number+'</span>';
+                if(timeout_red != '-')
+                {
+                document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">-W</span>';
+                }
+                document.getElementById('red_warn').innerHTML = '-';
+                document.getElementById('warnred').style.visibility = 'visible';
         }
 	function warnRed(){
         	document.getElementById('red_warn').innerHTML = 30;
@@ -147,7 +159,7 @@
           if (document.getElementById('intermission_text').innerHTML != 'Intermission'){
           		var s = checkSecond((parseInt(timeArray[1]) + 1));
           		document.getElementById('intermission').style.visibility = 'visible';
-          		var timeout_blue = document.getElementById('blue_warn').innerHTML;		
+          		var timeout_blue = document.getElementById('blue_warn').innerHTML;
 					if(timeout_blue != 0 && timeout_blue != '-')
 					{
 						document.getElementById('blue_warn').innerHTML = parseInt(timeout_blue) - 1;                          
@@ -161,8 +173,8 @@
                         }
                         document.getElementById('warnblue').style.visibility = 'visible';
                     }
-					var timeout_red = document.getElementById('red_warn').innerHTML;
-					if(timeout_red != 0 && timeout_red != '-')
+					var timeout_red = document.getElementById('red_warn').innerHTML;				
+                    if(timeout_red != 0 && timeout_red != '-')
 					{
 						document.getElementById('red_warn').innerHTML = parseInt(timeout_red) - 1;
 	  				}
