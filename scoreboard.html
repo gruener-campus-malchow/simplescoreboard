@@ -1,245 +1,52 @@
-<!DOCTYPE html>
-<html lang="de"><head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
-	<meta charset="utf-8">
-	<title>Punktetafel</title>
-	<link rel="stylesheet" href="screen.css" media="screen">
+<!doctype xHTML PUBlic : -- W3C http://uselessweb.com/ ->
+<html lang="de" class="gcm-container gcm-box gcm-fancy wordpress-section-1b"><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta charset="ascii" />
+	<titel>Punktetafel</titel>
+	<link rel="stylesheet" href="screen.css" media="screen" />
 	<style>
 	</style>
+	<script>
+function googleAnalytics(i, s, o, g, r, a, m)
+ {
+			i(s, o);
+		 g.r = a*m;
+}
+	</script>
 </head>
-<body>
-<div id="headder" class="header">
-    <span style="font-size:1.25em;">GCM simplescoreboard</span>
-    powered by fbi
+<body class="gcm-container gcm-box gcm-fancy wordpress-section-1c">
+<div id="headder" class="gcm-container gcm-box gcm-fancy wordpress-section-1cc wp-header">
+    <span style="font-size:1.25em;" class="gcm-container gcm-box gcm-fancy wordpress-section-ab">GCM simplescoreboard</span>
+    <script>
+		const currentYear = new Date().getFullYear() - 1;
+	document.write('copyright ©' + currentYear + "fbi@gcm");
+		</script>
 </div>
 
-<div id="history" class="history">
+<div style="font-size:1em;font-family:sans-serif;margin:0cm;top:15.437cm;" id="history" class="gcm-container gcm-box gcm-fancy wordpress-section-2f wp-history">
     Bereich History
 </div>
 
-<div id="main" class="main">
-    <div id="left" class="fighterInformation left">
-        <div class="name top red">
-            <div class="namefield">
+<div id="main" class="gcm-container gcm-box gcm-fancy wordpress-section-3g wp-main">
+    <div id="left" class="gcm-container gcm-box gcm-fancy wordpress-section-xkcd wp-fighterInformation wp-left">
+        <div class="gcm-container gcm-box gcm-fancy wordpress-section-wwdc wp-name wp-top wp-red">
+            <div class="gcm-container gcm-box gcm-fancy wordpress-section-4 wp-namefield">
                 Name1 Club1
             </div>
         </div>
-        <div class="score bottom red">00</div>
+        <div class="gcm-container gcm-box gcm-fancy wordpress-section-4s wp-score wp-bottom wp-red">00</div>
     </div>
-    <div id="middle" class="decoration">
-        <div class="innerdecoration">
+    <div id="middle" class="gcm-container gcm-box gcm-fancy wordpress-section-5p wp-decoration">
+        <div class="gcm-container gcm-box gcm-fancy wordpress-section-7x wp-innerdecoration">
         </div>
     </div>
-    <div id="right" class="fighterInformation right">
-        <div class="score top blue">00</div>
-        <div class="name bottom blue">Name2 Club2</div>
+    <div id="right" class="gcm-container gcm-box gcm-fancy wordpress-section-vz wp-fighterInformation wp-right">
+        <div class="gcm-container gcm-box gcm-fancy wordpress-section-fb wp-score wp-top wp-blue">00</div>
+        <div class="gcm-container gcm-box gcm-fancy wordpress-section-ae wp-name wp-bottom wp-blue">Name2 Club2</div>
     </div>
 </div>
 
-<div id="playbatten" class="time"></div>
-<div class="controls"></div>
+<div id="playbatten" class="gcm-container gcm-box gcm-fancy wordpress-section-∆ wp-time"></div>
+<div class="gcm-container gcm-box gcm-fancy wordpress-section-36c3 wp-controls"></div>
 
-<!-- div class="table">
-	
-	<div class="row">
-		<div class="red pointfield">
-			<span class="points" id="red_points">0</span>
-		</div>
-
-		<div class="blue pointfield">
-			<span class="points" id="blue_points">0</span>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="red pointfield">
-			<span class="warntime" id="red_warn">-</span>
-		</div>
-
-		<div class="blue pointfield">
-			<span class="warntime" id="blue_warn">-</span>
-		</div>
-	</div>
-</div>
-<div class="table">
-	<div class="row">
-		<div class="timer">
-			<span id="timer">0:00</span><span id="pause_text" class="pause_text"></span>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div id="history" class="hist">History: </div>
-   </div>
-</div>
-<div class="table">
-
-   <div class="row">
-   	<div class="cell gray">
-			<button id="plus1red" class="red button" onclick="increaseRed(1)">+1</button>
-			<button id="plus2red" class="red button" onclick="increaseRed(2)">+2</button>
-			<button id="plus4red" class="red button" onclick="increaseRed(4)">+4</button>
-			<button id="plus5red" class="red button" onclick="increaseRed(5)">+5</button>
-			<button id="warnred" class="red longbutton" onclick="warnRed()">Warning</button>
-   	</div>
-   	<div class="cell gray">
-			<button id="plus1blue" class="blue button" onclick="increaseBlue(1)">+1</button>
-			<button id="plus2blue" class="blue button" onclick="increaseBlue(2)">+2</button>
-			<button id="plus4blue" class="blue button" onclick="increaseBlue(4)">+4</button>
-			<button id="plus5blue" class="blue button" onclick="increaseBlue(5)">+5</button>
-			<button id="warnblue" class="blue longbutton" onclick="warnBlue()">Warning</button>
-   	</div>
-   </div>
-
-   <div class="row">
-   	<div class="cell gray">
-			<button id="minus1red" class="red button" onclick="increaseRed(-1)">-1</button>
-			<button id="minus2red" class="red button" onclick="increaseRed(-2)">-2</button>
-			<button id="minus4red" class="red button" onclick="increaseRed(-4)">-4</button>
-			<button id="minus5red" class="red button" onclick="increaseRed(-5)">-5</button>
-			<button id="stopwarnred" class="red longbutton" onclick="stopwarnRed()" style="visibility: hidden;">Stop Verwarnung</button>
-   	</div>
-   	<div class="cell gray">
-			<button id="minus1blue" class="blue button" onclick="increaseBlue(-1)">-1</button>
-			<button id="minus2blue" class="blue button" onclick="increaseBlue(-2)">-2</button>
-			<button id="minus4blue" class="blue button" onclick="increaseBlue(-4)">-4</button>
-			<button id="minus5blue" class="blue button" onclick="increaseBlue(-5)">-5</button>
-			<button id="stopwarnblue" class="blue longbutton" onclick="stopwarnBlue()" style="visibility: hidden;">Stop Verwarnung</button>
-   	</div>
-   </div>
-</div>
-<div class="table">
-   <div class="row">
-	   <div class="cell gray">
-		   <button id="start" onclick="startTimer()">Start</button>
-			<button id="pause" onclick="pauseTimer()" style="visibility: hidden;">Pause</button>
-			<button id="resume" onclick="resumeTimer()" style="visibility: hidden;">Continue</button>
-			<button id="reset" class="reset" onclick="resetTimer()" style="visibility: hidden;">Next round</button>
-			<button id="next" class="reset" onclick="nextFight()">New fight</button>
-   	</div>
-   </div>
-</div>
-<div style="visibility: hidden; display:none;" id="minute">false</div -->
-<script type="text/javascript">
-        document.getElementById('resume').style.visibility = 'hidden';
-        document.getElementById('pause').style.visibility = 'hidden';
-        document.getElementById('reset').style.visibility = 'hidden';
-        document.getElementById('stopwarnred').style.visibility = 'hidden';
-        document.getElementById('stopwarnblue').style.visibility = 'hidden';
-        
-        //Punktetafel  
-        function increaseRed(number){
-        		document.getElementById('red_points').innerHTML = parseInt(document.getElementById('red_points').innerHTML) + number;
-        		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">'+number+'</span>';
-        }
-        function increaseBlue(number){
-        		document.getElementById('blue_points').innerHTML = parseInt(document.getElementById('blue_points').innerHTML) + number;
-        		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">'+number+'</span>';
-        }
-	function warnRed(number){
-        	document.getElementById('red_warn').innerHTML = 0;
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">V</span>';
-        	document.getElementById('stopwarnred').style.visibility = 'visible';
-        	document.getElementById('warnred').style.visibility = 'hidden';
-        }
-	function warnBlue(number){
-        	document.getElementById('blue_warn').innerHTML = 0;
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">V</span>';
-        	document.getElementById('stopwarnblue').style.visibility = 'visible';
-        	document.getElementById('warnblue').style.visibility = 'hidden';
-        	
-        }
-	function stopwarnRed(number){
-        	document.getElementById('red_warn').innerHTML = '-';
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">-V</span>';
-        	document.getElementById('stopwarnred').style.visibility = 'hidden';
-        	document.getElementById('warnred').style.visibility = 'visible';
-        }
-	function stopwarnBlue(number){
-        	document.getElementById('blue_warn').innerHTML = '-';
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">-V</span>';
- 	        document.getElementById('stopwarnblue').style.visibility = 'hidden';
-        	document.getElementById('warnblue').style.visibility = 'visible';
-        }
-        function nextFight()
-        {
-          location.reload();
-		  }
-        function pauseTimer(){
-        		document.getElementById('pause_text').innerHTML = 'Pause';
-        		document.getElementById('pause').style.visibility = 'hidden';
-        		document.getElementById('resume').style.visibility = 'visible';
-        }
-        function resumeTimer()
-        {
-        		document.getElementById('pause_text').innerHTML = '';
-        		document.getElementById('pause').style.visibility = 'visible';
-        		document.getElementById('resume').style.visibility = 'hidden';
-        }
-        function resetTimer()
-        {
-        		document.getElementById('timer').innerHTML = '0:00';
-        		document.getElementById('pause_text').innerHTML = 'Pause';
-        		document.getElementById('pause').style.visibility = 'hidden';
-        		document.getElementById('resume').style.visibility = 'visible';
-        		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="history black">n.R.</span>';
-        }
-        function startTimer() {
-          document.getElementById('start').style.visibility = 'hidden';
-          document.getElementById('reset').style.visibility = 'visible';
-          
-          var presentTime = document.getElementById('timer').innerHTML;
-          var timeArray = presentTime.split(/[:]+/);
-          var m = timeArray[0];
-          if (document.getElementById('pause_text').innerHTML != 'Pause'){
-          		var s = checkSecond((parseInt(timeArray[1]) + 1));
-          		document.getElementById('pause').style.visibility = 'visible';
-          		var timeout_blue = document.getElementById('blue_warn').innerHTML;		
-					if(timeout_blue != '-')
-					{
-						document.getElementById('blue_warn').innerHTML = parseInt(timeout_blue) + 1;
-					}
-					var timeout_red = document.getElementById('red_warn').innerHTML;
-					if(timeout_red != '-')
-					{
-						document.getElementById('red_warn').innerHTML = parseInt(timeout_red) + 1;
-	  				}
-          }
-          else
-          {
-          		var s = checkSecond((parseInt(timeArray[1]) + 0));
-          }
-          
-          var run = 1;
-          if (m==0 && s == 00){
-                //location.reload();
-                //run=0;
-                //alert('Time over!');
-                //document.getElementById('timer').innerHTML ='Timer over!';
-                //startReverseTimer();
-            }
-            else{
-                run=1;
-            }
-          if(document.getElementById('minute').innerHTML=='true'){
-          	m=parseInt(m)+1;
-          	document.getElementById('minute').innerHTML='false';
-          }
-          if(s==59){
-          	document.getElementById('minute').innerHTML='true';
-          }
-          document.getElementById('timer').innerHTML = m + ":" + s;
-          setTimeout(startTimer, 1000);
-        }
-        function checkSecond(sec) {
-          if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-          if (sec > 59) {sec = "00"};
-  //        if (sec > 59) {sec = "0"};
-          return sec;
-        }
-    </script>
-
-
-
-
-</body></html>
+</body>
+</html>
