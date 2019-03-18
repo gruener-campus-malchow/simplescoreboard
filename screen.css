@@ -1,65 +1,95 @@
-*
-{
+* {
     margin: 0;
     padding: 0;
     border: none;
 }
-body
-{
+
+body {
     height: 100vh;
 	font-size: 1.4em;
     font-family: sans-serif;
 	/*background-color: #000;*/
     background-color: #008000;
 }
-.wp-header
-{
+
+.header {
     height: 5%;
     text-align: center;
 }
-.wp-history{height: 95%;}
-.wp-main{height: 65%;}
-.wp-decoration
-{
+
+.history {
+    height: 95%;
+}
+
+.main {
+    height: 65%;
+}
+
+.decoration {
     /*background-color: #64cc64;*/
     background-color: #000000;
     border-radius: 0 2em;
 }
-.wp-innerdecoration
-{
+.innerdecoration {
     background-color: #55ab55;
-    height: calc(100% - 10px);
+    height: calc(100% - 10px); 
     width: calc(100% - 10px);
     margin-top: 5px;
     margin-left: 5px;
     border-radius: 0 2em;
 }
-.wp-namefield
-{
-    background-color: #55ab55;
+
+.namefield{
+    background-color: #55ab55;    
     /*background-color: #55ab55;*/
-    height: calc(100% - 10px);
+    height: calc(100% - 10px); 
     width: calc(100% - 10px);
     margin-top: 5px;
     margin-left: 5px;
 }
-.wp-time, .wp-controls{height: 15%;}
-.wp-time{background-color: #cc0000;}
-.wp-controls{background-color: #cc3232;}
-.wp-fighterInformation, .wp-decoration{height: 100%;}
-.wp-fighterInformation .wp-name
-{
+.time, .controls {
+    height: 15%;
+}
+
+.time {    
+    background-color: #cc0000;
+}
+
+.controls {
+    background-color: #cc3232;
+}
+
+.fighterInformation, .decoration {
+    height: 100%;
+}
+
+.fighterInformation .name {
     height: 20%;
     background-color: #000000;
 }
-.wp-fighterInformation .wp-score{height: 80%;}
+
+.fighterInformation .score {
+    height: 80%;
+}
+
+
+
+
+
+#wrapper {
+  width:100%;
+  margin: 0 auto;
+}
+
 #headder {
   background-color:lightblue;
 }
+
 #main {
   /*background-color: lightgreen;*/
   margin-right: 150px;
 }
+
 #left {
   background-color: green;
   width: 45%;
@@ -85,4 +115,112 @@ body
 #footer {
   clear: both;
   background-color:lightblue;
+}
+
+
+
+
+
+
+
+
+div.table{
+	display: table;
+	width: 100%;
+	background-color: black;
+	/*border: 2px solid red;*/
+	border-radius: 10px;
+	margin:0 auto;
+	border-spacing: 5px;
+
+}
+div.row {
+	display: table-row;
+	border-bottom: 30px solid yellow;
+}
+div.cell {
+	display: table-cell;
+}
+span.history {
+	margin-left:2px;
+	padding: 2px;
+	color: white;
+}
+.points {
+	text-align: center;
+	font-size: 15em;
+	text-shadow: 10px 10px 5px black;
+	color: white;
+}
+.warntime {
+	text-align: center;
+	font-size: 6em;
+	text-shadow: 5px 5px 5px black;
+	color: white;
+	font-weight: bolder;
+}
+.pointfield {
+	/*border: 5px solid white;*/
+	border-radius: 10px;
+/*	float: left;*/
+	display: table-cell;
+/*	margin: 5px auto;*/
+	width:50%;
+	text-align: center;
+}
+
+
+button {
+    /*background-color: #4CAF50; Green */
+    border: none;
+    color: black;
+    background-color:white;
+    /*padding: 15px 32px;*/
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid black;
+	 border-radius: 10px;
+	 width:170px;
+	 height:40px;
+}
+.button {
+
+    color: white;
+	 width:60px;
+}
+.longbutton {
+    color: white;
+	 width:160px;
+}
+
+.timer{
+
+	border-radius: 10px;
+	font-size: 7em; 
+	display: table-cell;
+	text-align: center;
+	background-color: white;
+	width: 100%;
+	/*text-shadow: 5px 5px 5px black;*/
+	font-weight: bolder;
+}
+
+.hist{
+	border-radius: 10px;
+	display: table-cell;
+	background-color: white;
+	padding: 5px;
+	width: 100%;
+}
+
+.pause_text{
+	font-size: 100%; 
+	margin-left: 100px;
+}
+
+.reset{
+	margin-left: 100px;
 }
