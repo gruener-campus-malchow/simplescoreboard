@@ -2,6 +2,7 @@
   --red: #800;
   --blue: #00a;
   --back: #eee;
+  --dark: #ccc;
   --text: #222;
 }
 
@@ -11,7 +12,7 @@ body {
   margin: 0;
   font-family: sans-serif;
   display: grid;
-  grid-template: 'header history' 4rem 'main history' 1fr 'time history' 6rem 'controls history' 6rem / 1fr 8rem;
+  grid-template: 'header header' 4rem 'main history' 1fr 'time history' 6rem 'controls history' 6rem / 1fr 8rem;
 }
 
 /* main layout */
@@ -28,6 +29,13 @@ body {
   justify-content: center;
 }
 
+.header, .history {
+  background-color: var(--dark);
+  flex-direction: column;
+}
+
+.time, .controls { background-color: var(--dark) }
+
 .main {
   display: grid;
   grid-template: 'name-top middle score-top' 8rem 'score-bottom middle score-top' 1fr 'score-bottom middle name-bottom' 8rem / 1fr 4rem 1fr;
@@ -42,7 +50,7 @@ body {
 
 .main, .middle .inner-decoration { background: linear-gradient(var(--red) 8rem, var(--blue) calc(100% - 8rem)) }
 
-.middle { background-color: var(--back) }
+.middle { background: linear-gradient(var(--dark), var(--back) 8rem, var(--back) calc(100% - 8rem), var(--dark)) }
 
 .middle .inner-decoration {
   width: 100%;
@@ -50,10 +58,10 @@ body {
   border-radius: 0 2rem;
 }
 
-.score {
-  background-color: var(--back);
-  font-size: 10rem;
-}
+.score { font-size: 10rem }
+
+.score.top { background: linear-gradient(var(--dark), var(--back) 8rem) }
+.score.bottom { background: linear-gradient(var(--back) calc(100% - 8rem), var(--dark)) }
 
 .score.red { color: var(--red) }
 .score.blue { color: var(--blue) }
@@ -63,208 +71,4 @@ body {
 .name {
   font-size: 2rem;
   color: var(--back);
-}
-
-
-
-
-
-.decoration {
-    /*background-color: #64cc64;*/
-    background-color: #000000;
-    border-radius: 0 2em;
-}
-.innerdecoration {
-    background-color: #55ab55;
-    height: calc(100% - 10px);
-    width: calc(100% - 10px);
-    margin-top: 5px;
-    margin-left: 5px;
-    border-radius: 0 2em;
-}
-
-.namefield{
-    background-color: #55ab55;
-    /*background-color: #55ab55;*/
-    height: calc(100% - 10px);
-    width: calc(100% - 10px);
-    margin-top: 5px;
-    margin-left: 5px;
-}
-.time, .controls {
-    height: 15%;
-}
-
-.time {
-    background-color: #cc0000;
-}
-
-.controls {
-    background-color: #cc3232;
-}
-
-.fighterInformation, .decoration {
-    height: 100%;
-}
-
-.fighterInformation .name {
-    height: 20%;
-    background-color: #000000;
-}
-
-.fighterInformation .score {
-    height: 80%;
-}
-
-
-
-
-
-#wrapper {
-  width:100%;
-  margin: 0 auto;
-}
-
-#headder {
-  background-color:lightblue;
-}
-
-#main {
-  /*background-color: lightgreen;*/
-  margin-right: 150px;
-}
-
-#left {
-  background-color: green;
-  width: 45%;
-  float: left;
-}
-#middle {
-  /*background-color: red;*/
-  width: 10%;
-  float: left;
-}
-#right {
-  background-color: green;
-  width: 45%;
-  float: left;
-}
-
-#history {
-  float: right;
-  width:150px;
-  background-color: yellow;
-}
-
-#footer {
-  clear: both;
-  background-color:lightblue;
-}
-
-
-
-
-
-
-
-
-div.table{
-	display: table;
-	width: 100%;
-	background-color: black;
-	/*border: 2px solid red;*/
-	border-radius: 10px;
-	margin:0 auto;
-	border-spacing: 5px;
-
-}
-div.row {
-	display: table-row;
-	border-bottom: 30px solid yellow;
-}
-div.cell {
-	display: table-cell;
-}
-span.history {
-	margin-left:2px;
-	padding: 2px;
-	color: white;
-}
-.points {
-	text-align: center;
-	font-size: 15em;
-	text-shadow: 10px 10px 5px black;
-	color: white;
-}
-.warntime {
-	text-align: center;
-	font-size: 6em;
-	text-shadow: 5px 5px 5px black;
-	color: white;
-	font-weight: bolder;
-}
-.pointfield {
-	/*border: 5px solid white;*/
-	border-radius: 10px;
-/*	float: left;*/
-	display: table-cell;
-/*	margin: 5px auto;*/
-	width:50%;
-	text-align: center;
-}
-
-
-button {
-    /*background-color: #4CAF50; Green */
-    border: none;
-    color: black;
-    background-color:white;
-    /*padding: 15px 32px;*/
-    margin: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border: 2px solid black;
-	 border-radius: 10px;
-	 width:170px;
-	 height:40px;
-}
-.button {
-
-    color: white;
-	 width:60px;
-}
-.longbutton {
-    color: white;
-	 width:160px;
-}
-
-.timer{
-
-	border-radius: 10px;
-	font-size: 7em;
-	display: table-cell;
-	text-align: center;
-	background-color: white;
-	width: 100%;
-	/*text-shadow: 5px 5px 5px black;*/
-	font-weight: bolder;
-}
-
-.hist{
-	border-radius: 10px;
-	display: table-cell;
-	background-color: white;
-	padding: 5px;
-	width: 100%;
-}
-
-.pause_text{
-	font-size: 100%;
-	margin-left: 100px;
-}
-
-.reset{
-	margin-left: 100px;
 }
