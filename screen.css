@@ -1,29 +1,81 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: none;
+:root {
+  --red: #800;
+  --blue: #00a;
+  --back: #eee;
+  --text: #222;
 }
 
 body {
-    height: 100vh;
-	font-size: 1.4em;
-    font-family: sans-serif;
-	/*background-color: #000;*/
-    background-color: #008000;
+  width: 100vw;
+  height: 100vh;
+  font-family: sans-serif;
 }
 
 .header {
-    height: 5%;
-    text-align: center;
+  height: 5%;
+  text-align: center;
 }
 
 .history {
-    height: 95%;
+  height: 95%;
 }
 
 .main {
-    height: 65%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
 }
+
+.main {
+  display: grid;
+  grid-template: 'name-top middle score-top' 8rem 'score-bottom middle score-top' 1fr 'score-bottom middle name-bottom' 8rem / 1fr 4rem 1fr;
+}
+
+/* main inner positioning */
+.name.top { grid-area: name-top }
+.name.bottom { grid-area: name-bottom }
+.score.top { grid-area: score-top }
+.score.bottom { grid-area: score-bottom }
+.middle { grid-area: middle }
+
+/* center content */
+.score, .name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main, .middle .inner-decoration { background: linear-gradient(var(--red) 8rem, var(--blue) calc(100% - 8rem)) }
+
+.middle { background-color: var(--back) }
+
+.middle .inner-decoration {
+  width: 100%;
+  height: 100%;
+  border-radius: 0 2rem;
+}
+
+.score {
+  background-color: var(--back);
+  font-size: 10rem;
+}
+
+.score.red { color: var(--red) }
+.score.blue { color: var(--blue) }
+.score.top { border-bottom-left-radius: 1rem }
+.score.bottom { border-top-right-radius: 1rem }
+
+.name {
+  font-size: 2rem;
+  color: var(--back);
+}
+
+
+
+
 
 .decoration {
     /*background-color: #64cc64;*/
@@ -32,7 +84,7 @@ body {
 }
 .innerdecoration {
     background-color: #55ab55;
-    height: calc(100% - 10px); 
+    height: calc(100% - 10px);
     width: calc(100% - 10px);
     margin-top: 5px;
     margin-left: 5px;
@@ -40,9 +92,9 @@ body {
 }
 
 .namefield{
-    background-color: #55ab55;    
+    background-color: #55ab55;
     /*background-color: #55ab55;*/
-    height: calc(100% - 10px); 
+    height: calc(100% - 10px);
     width: calc(100% - 10px);
     margin-top: 5px;
     margin-left: 5px;
@@ -51,7 +103,7 @@ body {
     height: 15%;
 }
 
-.time {    
+.time {
     background-color: #cc0000;
 }
 
@@ -199,7 +251,7 @@ button {
 .timer{
 
 	border-radius: 10px;
-	font-size: 7em; 
+	font-size: 7em;
 	display: table-cell;
 	text-align: center;
 	background-color: white;
@@ -217,7 +269,7 @@ button {
 }
 
 .pause_text{
-	font-size: 100%; 
+	font-size: 100%;
 	margin-left: 100px;
 }
 
