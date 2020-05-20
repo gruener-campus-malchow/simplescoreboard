@@ -8,25 +8,24 @@
 body {
   width: 100vw;
   height: 100vh;
+  margin: 0;
   font-family: sans-serif;
+  display: grid;
+  grid-template: 'header history' 4rem 'main history' 1fr 'time history' 6rem 'controls history' 6rem / 1fr 8rem;
 }
 
-.header {
-  height: 5%;
-  text-align: center;
-}
+/* main layout */
+.header { grid-area: header }
+.history { grid-area: history }
+.main { grid-area: main }
+.time { grid-area: time }
+.controls { grid-area: controls }
 
-.history {
-  height: 95%;
-}
-
-.main {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 9999;
+/* center content */
+.score, .name, .header, .history {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main {
@@ -40,13 +39,6 @@ body {
 .score.top { grid-area: score-top }
 .score.bottom { grid-area: score-bottom }
 .middle { grid-area: middle }
-
-/* center content */
-.score, .name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .main, .middle .inner-decoration { background: linear-gradient(var(--red) 8rem, var(--blue) calc(100% - 8rem)) }
 
