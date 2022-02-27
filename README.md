@@ -1,6 +1,5 @@
-![](scoreboard.png)
-
-[toc]
+![](scoreboard.png =200x)
+![](Foto.JPG =200x)
 
 # english
 
