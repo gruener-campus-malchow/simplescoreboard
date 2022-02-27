@@ -2,7 +2,7 @@
 
 This project aims to develop a scoreboard for wrestling tournaments.
 
-![](simplescoreboard.png)
+![](scoreboard.png)
 
 ## instructions offline
 
