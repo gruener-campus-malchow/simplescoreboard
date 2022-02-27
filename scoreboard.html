@@ -2,7 +2,7 @@
 <html lang="de"><head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
 	<meta charset="utf-8">
-	<title>Punktetafel</title>
+	<title>Scoreboard</title>
 	<link rel="stylesheet" href="screen.css" media="screen">
 	<style>
 	</style>
@@ -34,7 +34,7 @@
 <div class="table">
 	<div class="row">
 		<div class="timer">
-			<span id="timer">0:00</span><span id="pause_text" class="pause_text"></span>
+			<span id="timer">0:00</span><span id="intermission_text" class="intermission_text"></span>
 		</div>
 	</div>
 	
@@ -67,14 +67,12 @@
 			<button id="minus2red" class="red button" onclick="increaseRed(-2)">-2</button>
 			<button id="minus4red" class="red button" onclick="increaseRed(-4)">-4</button>
 			<button id="minus5red" class="red button" onclick="increaseRed(-5)">-5</button>
-			<button id="stopwarnred" class="red longbutton" onclick="stopwarnRed()" style="visibility: hidden;">Stop Verwarnung</button>
    	</div>
    	<div class="cell gray">
 			<button id="minus1blue" class="blue button" onclick="increaseBlue(-1)">-1</button>
 			<button id="minus2blue" class="blue button" onclick="increaseBlue(-2)">-2</button>
 			<button id="minus4blue" class="blue button" onclick="increaseBlue(-4)">-4</button>
 			<button id="minus5blue" class="blue button" onclick="increaseBlue(-5)">-5</button>
-			<button id="stopwarnblue" class="blue longbutton" onclick="stopwarnBlue()" style="visibility: hidden;">Stop Verwarnung</button>
    	</div>
    </div>
 </div>
@@ -82,7 +80,7 @@
    <div class="row">
 	   <div class="cell gray">
 		   <button id="start" onclick="startTimer()">Start</button>
-			<button id="pause" onclick="pauseTimer()" style="visibility: hidden;">Pause</button>
+			<button id="intermission" onclick="intermissionTimer()" style="visibility: hidden;">Intermission</button>
 			<button id="resume" onclick="resumeTimer()" style="visibility: hidden;">Continue</button>
 			<button id="reset" class="reset" onclick="resetTimer()" style="visibility: hidden;">Next round</button>
 			<button id="next" class="reset" onclick="nextFight()">New fight</button>
@@ -92,65 +90,62 @@
 <div style="visibility: hidden; display:none;" id="minute">false</div>
 <script type="text/javascript">
         document.getElementById('resume').style.visibility = 'hidden';
-        document.getElementById('pause').style.visibility = 'hidden';
+        document.getElementById('intermission').style.visibility = 'hidden';
         document.getElementById('reset').style.visibility = 'hidden';
         document.getElementById('stopwarnred').style.visibility = 'hidden';
         document.getElementById('stopwarnblue').style.visibility = 'hidden';
         
-        //Punktetafel  
+        //Scoreboard  
         function increaseRed(number){
         		document.getElementById('red_points').innerHTML = parseInt(document.getElementById('red_points').innerHTML) + number;
         		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">'+number+'</span>';
+                if(timeout_blue != '-')
+                {
+                document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">-W</span>';
+                }
+                document.getElementById('blue_warn').innerHTML = '-';
+                document.getElementById('warnblue').style.visibility = 'visible';
         }
         function increaseBlue(number){
         		document.getElementById('blue_points').innerHTML = parseInt(document.getElementById('blue_points').innerHTML) + number;
         		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">'+number+'</span>';
+                if(timeout_red != '-')
+                {
+                document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">-W</span>';
+                }
+                document.getElementById('red_warn').innerHTML = '-';
+                document.getElementById('warnred').style.visibility = 'visible';
         }
-	function warnRed(number){
-        	document.getElementById('red_warn').innerHTML = 0;
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">V</span>';
-        	document.getElementById('stopwarnred').style.visibility = 'visible';
+	function warnRed(){
+        	document.getElementById('red_warn').innerHTML = 30;
+        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">W</span>';
         	document.getElementById('warnred').style.visibility = 'hidden';
         }
-	function warnBlue(number){
-        	document.getElementById('blue_warn').innerHTML = 0;
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">V</span>';
-        	document.getElementById('stopwarnblue').style.visibility = 'visible';
+	function warnBlue(){
+        	document.getElementById('blue_warn').innerHTML = 30;
+        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">W</span>';
         	document.getElementById('warnblue').style.visibility = 'hidden';
-        	
-        }
-	function stopwarnRed(number){
-        	document.getElementById('red_warn').innerHTML = '-';
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">-V</span>';
-        	document.getElementById('stopwarnred').style.visibility = 'hidden';
-        	document.getElementById('warnred').style.visibility = 'visible';
-        }
-	function stopwarnBlue(number){
-        	document.getElementById('blue_warn').innerHTML = '-';
-        	document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">-V</span>';
- 	        document.getElementById('stopwarnblue').style.visibility = 'hidden';
-        	document.getElementById('warnblue').style.visibility = 'visible';
         }
         function nextFight()
         {
           location.reload();
 		  }
-        function pauseTimer(){
-        		document.getElementById('pause_text').innerHTML = 'Pause';
-        		document.getElementById('pause').style.visibility = 'hidden';
+        function intermissionTimer(){
+        		document.getElementById('intermission_text').innerHTML = 'Intermission';
+        		document.getElementById('intermission').style.visibility = 'hidden';
         		document.getElementById('resume').style.visibility = 'visible';
         }
         function resumeTimer()
         {
-        		document.getElementById('pause_text').innerHTML = '';
-        		document.getElementById('pause').style.visibility = 'visible';
+        		document.getElementById('intermission_text').innerHTML = '';
+        		document.getElementById('intermission').style.visibility = 'visible';
         		document.getElementById('resume').style.visibility = 'hidden';
         }
         function resetTimer()
         {
         		document.getElementById('timer').innerHTML = '0:00';
-        		document.getElementById('pause_text').innerHTML = 'Pause';
-        		document.getElementById('pause').style.visibility = 'hidden';
+        		document.getElementById('intermission_text').innerHTML = 'Intermission';
+        		document.getElementById('intermission').style.visibility = 'hidden';
         		document.getElementById('resume').style.visibility = 'visible';
         		document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="history black">n.R.</span>';
         }
@@ -161,19 +156,37 @@
           var presentTime = document.getElementById('timer').innerHTML;
           var timeArray = presentTime.split(/[:]+/);
           var m = timeArray[0];
-          if (document.getElementById('pause_text').innerHTML != 'Pause'){
+          if (document.getElementById('intermission_text').innerHTML != 'Intermission'){
           		var s = checkSecond((parseInt(timeArray[1]) + 1));
-          		document.getElementById('pause').style.visibility = 'visible';
-          		var timeout_blue = document.getElementById('blue_warn').innerHTML;		
-					if(timeout_blue != '-')
+          		document.getElementById('intermission').style.visibility = 'visible';
+          		var timeout_blue = document.getElementById('blue_warn').innerHTML;
+					if(timeout_blue != 0 && timeout_blue != '-')
 					{
-						document.getElementById('blue_warn').innerHTML = parseInt(timeout_blue) + 1;
+						document.getElementById('blue_warn').innerHTML = parseInt(timeout_blue) - 1;                          
 					}
-					var timeout_red = document.getElementById('red_warn').innerHTML;
-					if(timeout_red != '-')
+                    else
+                    {
+                        document.getElementById('blue_warn').innerHTML = '-';
+                        if(timeout_blue == 0)
+                        {
+                            document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="blue history">-W</span>';
+                        }
+                        document.getElementById('warnblue').style.visibility = 'visible';
+                    }
+					var timeout_red = document.getElementById('red_warn').innerHTML;				
+                    if(timeout_red != 0 && timeout_red != '-')
 					{
-						document.getElementById('red_warn').innerHTML = parseInt(timeout_red) + 1;
+						document.getElementById('red_warn').innerHTML = parseInt(timeout_red) - 1;
 	  				}
+                    else
+                    {
+                        document.getElementById('red_warn').innerHTML = '-';
+                        if(timeout_red == 0)
+                        {
+                        document.getElementById('history').innerHTML = document.getElementById('history').innerHTML + '<span class="red history">-W</span>';
+                        }
+                        document.getElementById('warnred').style.visibility = 'visible';
+                    }
           }
           else
           {
