@@ -2,6 +2,8 @@
 
 This project aims to develop a scoreboard for wrestling tournaments.
 
+![](simplescoreboard.png)
+
 ## instructions offline
 
 Download the files and open the index.html with your browser. Switch to Full-Screen-Mode. Adjust the Layout with zooming in or out (often "ctrl +" or "ctrl -").
