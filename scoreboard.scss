@@ -1,0 +1,79 @@
+$red: #f05;
+$blue: #05f;
+
+$name-height: 5rem;
+$middle-width: 5rem;
+$middle-gap: .25rem;
+$corner-radius: 3rem;
+
+$name-font-size: 2rem;
+$score-font-size: 8rem;
+
+body {
+	margin: 0;
+	background: #000;
+
+	&.scoreboard {
+		height: 100vh;
+	}
+}
+
+@mixin centered-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.scoreboard {
+	background-color: #000;
+	font-family: 'Montserrat', 'Ubuntu', sans-serif;
+	font-weight: 800;
+
+	display: grid;
+	// these parentheses are needed to signal the sass compiler that we don't want division
+	grid-template: ($name-height 1fr $name-height) / (1fr $middle-width 1fr);
+
+	.name-label {
+		@include centered-content;
+
+		color: #000;
+		font-size: $name-font-size;
+
+		&.red {
+			background-color: $red;
+			border-top-right-radius: $corner-radius;
+			grid-column: 1 / 3;
+		}
+
+		&.blue {
+			background-color: $blue;
+			border-bottom-left-radius: $corner-radius;
+			grid-column: 2 / 4;
+		}
+
+	}
+
+	.score-label {
+		@include centered-content;
+
+		font-size: $score-font-size;
+		grid-row: 2;
+
+		&.red {
+			color: $red;
+		}
+
+		&.blue {
+			color: $blue;
+		}
+
+	}
+
+	.middle {
+		background: linear-gradient($red, $blue);
+		margin: $middle-gap 0;
+		grid-row: 2;
+	}
+
+}
