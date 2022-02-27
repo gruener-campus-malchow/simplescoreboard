@@ -5,7 +5,7 @@ This project aims to develop a scoreboard for wrestling tournaments. Use it with
 ## Instructions 
 
 1. You can use it offline or online:
-  - Download the files (top right corner: “Code” (green button) → „Download ZIP“) and open the index.html with your browser **or**
+  - Download the files (top right corner: “Code” (green button) → „Download ZIP“) and open the `index.html` file with your browser **or**
   - Go to https://gruener-campus-malchow.github.io/simplescoreboard/
 3. Switch to Full-Screen-Mode
 4. Adjust the Layout by zooming in or out (usually `ctrl` `+` or `ctrl` `-`)
