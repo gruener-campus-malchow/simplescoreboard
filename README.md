@@ -1,6 +1,3 @@
-![](scoreboard.png =200x)
-![](Foto.JPG =200x)
-
 # english
 
 This project aims to develop a scoreboard for wrestling tournaments. Use it with a second mirrored screen.
@@ -30,3 +27,6 @@ Dieses Projekt ist eine Punktetafel für Ringkampfturniere. Es ist für einen ge
 5. Spiel mit den Funktionen und probiere alles aus
 
 Es gibt ein paar kleine Fehler. Lade im Zweifelsfall die Seite neu.
+
+![](scoreboard.png)
+![](Foto.JPG)
