@@ -5,32 +5,50 @@
 		<meta name="viewport" content="initial-scale=1">
 		<title>simplescoreboard</title>
 		<link rel="stylesheet" href="scoreboard.css">
+		<script src="scoreboard.js"></script>
 	</head>
 	<body>
 
 		<div class="scoreboard">
-			<div class="name-label red">name red</div>
+			<input type="text" class="name-label red" value="name red">
 			<div class="score-label red">00</div>
-			<div class="middle"></div>
+			<div class="middle">00:00</div>
 			<div class="score-label blue">00</div>
-			<div class="name-label blue">name blue</div>
+			<input type="text" class="name-label blue" value="name blue">
 		</div>
 
 		<div class="controls">
-			<button onclick="c()">pop out</button>
+			<button onclick="popup()">pop out</button>
+			<div class="row">
+				<button class="red" onclick="click('score red', 1)">+1</button>
+				<button class="red" onclick="click('score red', 2)">+2</button>
+				<button class="red" onclick="click('score red', 4)">+4</button>
+				<button class="red" onclick="click('score red', 5)">+5</button>
+				<button class="red" onclick="click('warning red')">warning</button>
+				<button class="blue" onclick="click('score blue', 1)">+1</button>
+				<button class="blue" onclick="click('score blue', 2)">+2</button>
+				<button class="blue" onclick="click('score blue', 4)">+4</button>
+				<button class="blue" onclick="click('score blue', 5)">+5</button>
+				<button class="blue" onclick="click('warning blue')">warning</button>
+			</div>
+			<div class="row">
+				<button class="red" onclick="click('score red', -1)">-1</button>
+				<button class="red" onclick="click('score red', -2)">-2</button>
+				<button class="red" onclick="click('score red', -4)">-4</button>
+				<button class="red" onclick="click('score red', -5)">-5</button>
+				<button class="red" onclick="click('end warning red')">end warning</button>
+				<button class="blue" onclick="click('score blue', -1)">-1</button>
+				<button class="blue" onclick="click('score blue', -2)">-2</button>
+				<button class="blue" onclick="click('score blue', -4)">-4</button>
+				<button class="blue" onclick="click('score blue', -5)">-5</button>
+				<button class="blue" onclick="click('end warning blue')">end warning</button>
+			</div>
+			<div class="row">
+				<button onclick="click('toggleState')">start</button>
+				<button onclick="click('toggleState')">start</button>
+				<button onclick="click('toggleState')">start</button>
+			</div>
 		</div>
-
-		<script>
-		function c() {
-			let w = window.open('', 'popup', 'popup');
-
-			w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>simplescoreboard</title><link rel="stylesheet" href="scoreboard.css"></head><body></body></html>`);
-			w.document.body.classList.add('scoreboard');
-
-			const template = document.querySelector('.scoreboard');
-			w.document.body.innerHTML = template.innerHTML;
-		}
-		</script>
 
 	</body>
 </html>

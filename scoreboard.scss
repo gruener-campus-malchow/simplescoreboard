@@ -7,15 +7,27 @@ $middle-gap: .25rem;
 $corner-radius: 3rem;
 
 $name-font-size: 2rem;
+$timer-font-size: 4rem;
 $score-font-size: 8rem;
+
+$control-gap: 1rem;
 
 body {
 	margin: 0;
 	background: #000;
+	font-family: 'Montserrat', 'Ubuntu', sans-serif;
+	font-weight: 800;
 
-	&.scoreboard {
-		height: 100vh;
-	}
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+input, button {
+	font: inherit;
+	margin: 0;
+	padding: 0;
+	border: none;
 }
 
 @mixin centered-content {
@@ -23,12 +35,12 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 }
 
 .scoreboard {
 	background-color: #000;
-	font-family: 'Montserrat', 'Ubuntu', sans-serif;
-	font-weight: 800;
+	flex-grow: 1;
 
 	display: grid;
 	// these parentheses are needed to signal the sass compiler that we don't want division
@@ -58,6 +70,7 @@ body {
 		@include centered-content;
 
 		font-size: $score-font-size;
+		font-variant: tabular-nums;
 		grid-row: 2;
 
 		&.red {
@@ -71,9 +84,58 @@ body {
 	}
 
 	.middle {
+		@include centered-content;
+		color: #fff;
+		font-size: $timer-font-size;
+
 		background: linear-gradient($red, $blue);
 		margin: $middle-gap 0;
 		grid-row: 2;
+	}
+
+}
+
+
+@mixin button($color) {
+	margin: 0;
+	padding: .5em 1em;
+	border: .2rem solid $color;
+	color: $color;
+	background: none;
+	border-radius: .5rem;
+
+	&:hover {
+		background-color: $color;
+		color: #000;
+	}
+}
+
+.controls {
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: $control-gap;
+
+	flex-shrink: 0;
+
+	button {
+		@include button(#fff);
+
+		&.red {
+			@include button($red)
+		}
+
+		&.blue {
+			@include button($blue)
+		}
+
+		font: inherit;
+		flex-grow: 1;
+	}
+
+	.row {
+		display: flex;
+		gap: $control-gap;
 	}
 
 }
