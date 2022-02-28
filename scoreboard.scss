@@ -1,0 +1,175 @@
+$red: #f05;
+$blue: #05f;
+
+$name-height: 5rem;
+$middle-width: 5rem;
+$middle-gap: .25rem;
+$corner-radius: 3rem;
+
+$name-font-size: 2rem;
+$timer-font-size: 4rem;
+$score-font-size: 8rem;
+$warning-font-size: 3rem;
+
+$control-gap: 1rem;
+
+body {
+	margin: 0;
+	background: #000;
+	font-family: 'Montserrat', 'Ubuntu', sans-serif;
+	font-weight: 800;
+
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+input, button {
+	font: inherit;
+	margin: 0;
+	padding: 0;
+	border: none;
+	min-width: 0;
+}
+
+@mixin centered-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.scoreboard {
+	background-color: #000;
+	flex-grow: 1;
+
+	display: grid;
+	// these parentheses are needed to signal the sass compiler that we don't want division
+	grid-template: ($name-height 1fr $name-height) / (1fr $middle-width 1fr);
+
+	.name-label {
+		@include centered-content;
+
+		color: #000;
+		font-size: $name-font-size;
+		grid-column: span 2;
+
+		&.red {
+			background-color: $red;
+			border-top-right-radius: $corner-radius;
+			//grid-column: 1 / 3;
+		}
+
+		&.blue {
+			background-color: $blue;
+			border-bottom-left-radius: $corner-radius;
+			//grid-column: 2 / 4;
+		}
+
+	}
+
+	&.editable .name-label {
+		background-image: url('edit.svg');
+		background-repeat: no-repeat;
+		background-size: 1.5rem;
+		background-position: 2rem;
+	}
+
+	.warning-label {
+		@include centered-content;
+		font-size: $warning-font-size;
+
+		&.red {
+			color: $red;
+		}
+
+		&.blue {
+			color: $blue;
+		}
+
+	}
+
+	.score-label {
+		@include centered-content;
+
+		font-size: $score-font-size;
+		font-variant: tabular-nums;
+		//grid-row: 2;
+
+		&.red {
+			color: $red;
+		}
+
+		&.blue {
+			color: $blue;
+		}
+
+	}
+
+	.middle {
+		@include centered-content;
+		color: #fff;
+		font-size: $timer-font-size;
+
+		background: linear-gradient($red, $blue);
+		margin: $middle-gap 0;
+		//grid-row: 2;
+		z-index: 4;
+	}
+
+	.timer {
+		font-variant: tabular-nums;
+	}
+
+}
+
+
+@mixin button($color) {
+	margin: 0;
+	padding: .5em 1em;
+	border: .2rem solid $color;
+	color: $color;
+	background: none;
+	border-radius: .5rem;
+
+	&:hover {
+		background-color: $color;
+		color: #000;
+	}
+}
+
+.controls {
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: $control-gap;
+
+	flex-shrink: 0;
+
+	button {
+		@include button(#fff);
+
+		&.red {
+			@include button($red);
+		}
+
+		&.blue {
+			@include button($blue);
+		}
+
+		font: inherit;
+		flex: 1 0 0;
+
+		&.small {
+			flex-grow: 0;
+			min-width: 4rem;
+		}
+	}
+
+	.row {
+		display: flex;
+		gap: $control-gap;
+	}
+
+}
