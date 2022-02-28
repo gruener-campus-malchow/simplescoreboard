@@ -9,6 +9,7 @@ $corner-radius: 3rem;
 $name-font-size: 2rem;
 $timer-font-size: 4rem;
 $score-font-size: 8rem;
+$warning-font-size: 4rem;
 
 $control-gap: 1rem;
 
@@ -28,6 +29,7 @@ input, button {
 	margin: 0;
 	padding: 0;
 	border: none;
+	min-width: 0;
 }
 
 @mixin centered-content {
@@ -51,17 +53,39 @@ input, button {
 
 		color: #000;
 		font-size: $name-font-size;
+		grid-column: span 2;
 
 		&.red {
 			background-color: $red;
 			border-top-right-radius: $corner-radius;
-			grid-column: 1 / 3;
+			//grid-column: 1 / 3;
 		}
 
 		&.blue {
 			background-color: $blue;
 			border-bottom-left-radius: $corner-radius;
-			grid-column: 2 / 4;
+			//grid-column: 2 / 4;
+		}
+
+	}
+
+	&.editable .name-label {
+		background-image: url('edit.svg');
+		background-repeat: no-repeat;
+		background-size: 1.5rem;
+		background-position: 2rem;
+	}
+
+	.warning-label {
+		@include centered-content;
+		font-size: $warning-font-size;
+
+		&.red {
+			color: $red;
+		}
+
+		&.blue {
+			color: $blue;
 		}
 
 	}
@@ -71,7 +95,7 @@ input, button {
 
 		font-size: $score-font-size;
 		font-variant: tabular-nums;
-		grid-row: 2;
+		//grid-row: 2;
 
 		&.red {
 			color: $red;
@@ -90,7 +114,8 @@ input, button {
 
 		background: linear-gradient($red, $blue);
 		margin: $middle-gap 0;
-		grid-row: 2;
+		//grid-row: 2;
+		z-index: 4;
 	}
 
 }

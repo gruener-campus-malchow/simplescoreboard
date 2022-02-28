@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const template = document.querySelector('.scoreboard');
 		const copy = template.cloneNode(true);
+		copy.classList.remove('editable');
 		w.document.body.appendChild(copy);
 
 		w.document.addEventListener('click', e => {
@@ -18,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	}));
 
 	const r = createRow();
-	//for () {}
+	for (b of [1,2,4,5]) {
+
+	}
 
 
 	initNameLabel('.scoreboard .name-label.red');

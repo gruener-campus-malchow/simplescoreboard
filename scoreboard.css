@@ -13,6 +13,7 @@ input, button {
   margin: 0;
   padding: 0;
   border: none;
+  min-width: 0;
 }
 
 .scoreboard {
@@ -29,16 +30,35 @@ input, button {
   text-align: center;
   color: #000;
   font-size: 2rem;
+  grid-column: span 2;
 }
 .scoreboard .name-label.red {
   background-color: #f05;
   border-top-right-radius: 3rem;
-  grid-column: 1/3;
 }
 .scoreboard .name-label.blue {
   background-color: #05f;
   border-bottom-left-radius: 3rem;
-  grid-column: 2/4;
+}
+.scoreboard.editable .name-label {
+  background-image: url("edit.svg");
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+  background-position: 2rem;
+}
+.scoreboard .warning-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 4rem;
+}
+.scoreboard .warning-label.red {
+  color: #f05;
+}
+.scoreboard .warning-label.blue {
+  color: #05f;
 }
 .scoreboard .score-label {
   display: flex;
@@ -48,7 +68,6 @@ input, button {
   text-align: center;
   font-size: 8rem;
   font-variant: tabular-nums;
-  grid-row: 2;
 }
 .scoreboard .score-label.red {
   color: #f05;
@@ -66,7 +85,7 @@ input, button {
   font-size: 4rem;
   background: linear-gradient(#f05, #05f);
   margin: 0.25rem 0;
-  grid-row: 2;
+  z-index: 4;
 }
 
 .controls {
