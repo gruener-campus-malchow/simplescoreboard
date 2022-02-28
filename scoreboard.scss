@@ -118,6 +118,10 @@ input, button {
 		z-index: 4;
 	}
 
+	.timer {
+		font-variant: tabular-nums;
+	}
+
 }
 
 
@@ -155,7 +159,12 @@ input, button {
 		}
 
 		font: inherit;
-		flex-grow: 1;
+		flex: 1 0 0;
+
+		&.small {
+			flex-grow: 0;
+			min-width: 4rem;
+		}
 	}
 
 	.row {
