@@ -122,11 +122,11 @@ input, button {
 		@include button(#fff);
 
 		&.red {
-			@include button($red)
+			@include button($red);
 		}
 
 		&.blue {
-			@include button($blue)
+			@include button($blue);
 		}
 
 		font: inherit;
