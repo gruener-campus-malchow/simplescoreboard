@@ -43,6 +43,7 @@ input, button {
 .scoreboard {
 	background-color: #000;
 	flex-grow: 1;
+	white-space: nowrap;
 
 	display: grid;
 	// these parentheses are needed to signal the sass compiler that we don't want division
@@ -120,6 +121,28 @@ input, button {
 
 	.timer {
 		font-variant: tabular-nums;
+	}
+
+
+	.fancy-animation {
+		font-variant: tabular-nums;
+
+		.inner {
+			overflow: hidden;
+
+			.letter-old, .letter-new {
+				display: inline-block;
+				transition: transform .4s;
+			}
+			.letter-old {
+				width: 0;
+			}
+			.letter-new {
+				transform: translateY(100%);
+			}
+
+		}
+
 	}
 
 }

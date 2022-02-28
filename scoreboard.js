@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	// warnings
 	let wt = { 'red': 0, 'blue': 0 };
 
+	document.querySelectorAll('.fancy-animation').forEach(e => {
+		e.dataset.content = e.innerText;
+		registerDigits(e);
+	});
+
 	controls.appendChild(createButton('pop out', e => {
 		w = window.open('', 'simplescoreboardpopup', 'popup');
 		w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>simplescoreboard</title><link rel="stylesheet" href="scoreboard.css"></head><body></body></html>`);
@@ -17,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		const copy = template.cloneNode(true);
 		copy.classList.remove('editable');
 		w.document.body.appendChild(copy);
+
+		w.document.querySelectorAll('.fancy-animation').forEach(e => registerDigits(e) );
 
 		w.document.addEventListener('click', e => {
 			w.document.documentElement.requestFullscreen();
@@ -119,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}, `small ${color}`);
 
 		function changeScore(e, s) {
-			const value = parseInt(e.innerText) + s;
-			e.innerText = value.toString().padStart(2, '0');
+			const value = (parseInt(e.dataset.content) || 0) + s;
+			e.dataset.content = value.toString().padStart(2, '0');
 		}
 	}
 
@@ -144,7 +151,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	function setText(target, text) {
-		document.querySelector(target).innerText = text;
-		if (w) w.document.querySelector(target).innerText = text;
+		document.querySelector(target).dataset.content = text;
+		if (w) w.document.querySelector(target).dataset.content = text;
 	}
+
+
+
+	function registerDigits(elem) {
+		// thanks to https://stackoverflow.com/a/41425087
+		new MutationObserver(mutations => {
+		  mutations.forEach(mutation => {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'data-content') {
+				elem.innerHTML = '';
+				const inner = document.createElement('div');
+				inner.classList.add('inner');
+				elem.appendChild(inner);
+
+				for (i in elem.dataset.content) {
+					const oldLetter = document.createElement('span');
+					const newLetter = document.createElement('span');
+					oldLetter.classList.add('letter-old');
+					newLetter.classList.add('letter-new');
+					oldLetter.innerText = mutation.oldValue[i] || elem.dataset.content[i];
+					newLetter.innerText = elem.dataset.content[i];
+					inner.append(oldLetter, newLetter);
+
+					if (mutation.oldValue[i] && elem.dataset.content[i] != mutation.oldValue[i]) {
+						setTimeout(() => {
+							oldLetter.style.transform = `translateY(-100%)`;
+							newLetter.style.transform = `translateY(0)`;
+						}, (elem.dataset.content.length - i) * 60);
+					}
+				}
+			}
+		  });
+		}).observe(elem, {
+			attributes: true,
+			attributeOldValue: true
+		});
+	}
+
 });
