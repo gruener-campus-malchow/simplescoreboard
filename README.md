@@ -2,7 +2,7 @@
 
 This project aims to develop a scoreboard for wrestling tournaments. Use it with a second mirrored screen *or* two full screen windows.
 
-This is a redesign of the simplescoreboard, [you can find the old version here.](https://github.com/gruener-campus-malchow/simplescoreboard/tree/archive#readme)
+This is a redesign of the simplescoreboard, [you can find the old version here.](https://github.com/gruener-campus-malchow/simplescoreboard/tree/archive#english)
 
 ## Instructions
 
@@ -15,13 +15,13 @@ This is a redesign of the simplescoreboard, [you can find the old version here.]
 3. Adjust the Layout by zooming in or out (usually `ctrl` `+` or `ctrl` `-`), or by using the `+` and `-` buttons.
 4. Play around and test everything.
 
-~~There are some minor bugs. Reload the page if errors occur.~~ There are no bugs. The software is perfect. –[eintyp](https://github.com/eintyp)
+~~There are some minor bugs. Reload the page if errors occur.~~ There are no bugs. The software is perfect. – [eintyp](https://github.com/eintyp)
 
 # Deutsch
 
 Dieses Projekt ist eine Punktetafel für Ringkampfturniere. Es ist ursprünglich für einen gespiegelten zweiten Bildschirm gedacht, kann aber auch über ein zweites Vollbild-Fenster betrieben werden.
 
-Wir haben das simplescoreboard überarbeitet, [hier gibt es die alte Version.](https://github.com/gruener-campus-malchow/simplescoreboard/tree/archive#readme)
+Wir haben das simplescoreboard überarbeitet, [hier gibt es die alte Version.](https://github.com/gruener-campus-malchow/simplescoreboard/tree/archive#deutsch)
 
 ## Anleitung
 
@@ -34,7 +34,7 @@ Wir haben das simplescoreboard überarbeitet, [hier gibt es die alte Version.](h
 3. Passe das Layout durch herein- oder herauszoomen (meist mit `strg` `+` oder `strg` `-`) oder mit den Knöpfen `+` und `-` an.
 4. Spiel mit den Funktionen und probiere alles aus.
 
-~~Es gibt ein paar kleine Fehler. Lade im Zweifelsfall die Seite neu.~~ Es gibt keine Fehler. Die Software ist perfekt. –[eintyp](https://github.com/eintyp)
+~~Es gibt ein paar kleine Fehler. Lade im Zweifelsfall die Seite neu.~~ Es gibt keine Fehler. Die Software ist perfekt. – [eintyp](https://github.com/eintyp)
 
 ![redesign](scoreboard.png)
 ![old version](Foto.JPG)
