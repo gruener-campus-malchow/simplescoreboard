@@ -55,17 +55,13 @@ input, button {
 		color: #000;
 		font-size: $name-font-size;
 		grid-column: span 2;
+		border-radius: 0 $corner-radius;
 
 		&.red {
 			background-color: $red;
-			border-top-right-radius: $corner-radius;
-			//grid-column: 1 / 3;
 		}
-
 		&.blue {
 			background-color: $blue;
-			border-bottom-left-radius: $corner-radius;
-			//grid-column: 2 / 4;
 		}
 
 	}
