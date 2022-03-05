@@ -162,6 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		new MutationObserver(mutations => {
 		  mutations.forEach(mutation => {
 			if (mutation.type === 'attributes' && mutation.attributeName === 'data-content') {
+				if (mutation.oldValue == elem.dataset.content) return;
+
 				elem.innerHTML = '';
 				const inner = document.createElement('div');
 				inner.classList.add('inner');
