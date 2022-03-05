@@ -36,5 +36,5 @@ Wir haben das simplescoreboard überarbeitet, [hier gibt es die alte Version.](h
 
 ~~Es gibt ein paar kleine Fehler. Lade im Zweifelsfall die Seite neu.~~ Es gibt keine Fehler. Die Software ist perfekt. –[eintyp](https://github.com/eintyp)
 
-![redesign](scoreboard.png)
-![old version](Foto.JPG)
+![redesign](docs/scoreboard.png)
+![old version](docs/photo.jpg)
