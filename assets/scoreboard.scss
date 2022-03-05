@@ -30,6 +30,12 @@ input, button {
 	padding: 0;
 	border: none;
 	min-width: 0;
+	outline: 0;
+}
+
+::selection {
+	background-color: #fff;
+	color: #000;
 }
 
 @mixin centered-content {
@@ -62,6 +68,10 @@ input, button {
 		}
 		&.blue {
 			background-color: $blue;
+		}
+
+		&:focus {
+			box-shadow: 0 0 0 .2rem #fff inset;
 		}
 
 	}
