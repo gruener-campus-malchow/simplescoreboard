@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	controls.appendChild(createButton('pop out', e => {
 		w = window.open('', 'simplescoreboardpopup', 'popup');
-		w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>simplescoreboard</title><link rel="stylesheet" href="scoreboard.css"></head><body></body></html>`);
+		w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>simplescoreboard</title><link rel="stylesheet" href="assets/scoreboard.css"></head><body></body></html>`);
 		w.document.body.innerHTML = '';
 
 		const template = document.querySelector('.scoreboard');
