@@ -162,7 +162,7 @@ input, button {
 	background: none;
 	border-radius: .5rem;
 
-	&:hover {
+	&:hover, &:focus {
 		background-color: $color;
 		color: #000;
 	}
