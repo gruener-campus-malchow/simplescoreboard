@@ -1,4 +1,4 @@
-![logo](docs/simplescoreboard.svg)
+![logo](docs/logo.svg)
 
 # English
 
