@@ -4,9 +4,8 @@ This project aims to develop a scoreboard for wrestling tournaments. Use it with
 
 ## Instructions 
 
-1. You can use it offline or online:
-  - Download the files (top right corner: “Code” (green button) → „Download ZIP“) and open the `index.html` file with your browser **or**
-  - Go to https://gruener-campus-malchow.github.io/simplescoreboard/
+1. Since this is an old version, you can only use it offline:
+  - [Download the files](https://github.com/gruener-campus-malchow/simplescoreboard/archive/refs/heads/archive.zip) and open the `index.html` file with your browser
 3. Switch to Full-Screen-Mode
 4. Adjust the Layout by zooming in or out (usually `ctrl` `+` or `ctrl` `-`)
 5. Play around and test everything
@@ -19,9 +18,8 @@ Dieses Projekt ist eine Punktetafel für Ringkampfturniere. Es ist für einen ge
 
 ## Anleitung 
 
-1. Man kann das Programm offline oder online benutzen:
- - Lade die Dateien herunter (ganz oben rechts: „Code“ (grüner Knopf) → „Download ZIP“) und öffne die Datei `index.html` mit einem Browser **oder**
- - Öffne https://gruener-campus-malchow.github.io/simplescoreboard/
+1. Da dies eine ältere Version ist, kann man das Programm nur offline benutzen:
+ - [Lade die Dateien herunter](https://github.com/gruener-campus-malchow/simplescoreboard/archive/refs/heads/archive.zip) und öffne die Datei `index.html` mit einem Browser
 3. Stelle den Browser auf Vollbildmodus
 4. Passe das Layout durch herein- oder herauszoomen an (meist mit `strg` `+` oder `strg` `-`)
 5. Spiel mit den Funktionen und probiere alles aus
