@@ -10,6 +10,7 @@ $name-font-size: 2rem;
 $timer-font-size: 4rem;
 $score-font-size: 8rem;
 $warning-font-size: 3rem;
+$history-font-size: 1.5rem;
 
 $control-gap: 1rem;
 
@@ -53,7 +54,7 @@ input, button {
 
 	display: grid;
 	// these parentheses are needed to signal the sass compiler that we don't want division
-	grid-template: ($name-height 1fr $name-height) / (1fr $middle-width 1fr);
+	grid-template: ($name-height 1fr $name-height 3.5rem) / (1fr $middle-width 1fr);
 
 	.name-label {
 		@include centered-content;
@@ -127,6 +128,37 @@ input, button {
 
 	.timer {
 		font-variant: tabular-nums;
+	}
+
+
+	.history {
+		grid-column: span 3;
+		margin-top: 1rem;
+		font-size: $history-font-size;
+		display: flex;
+		gap: .5rem;
+		overflow: auto;
+
+		scrollbar-width: none;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		.entry {
+			background-color: #fff;
+			padding: .2em .5em;
+			border-radius: .5rem;
+
+			&.red {
+				background-color: $red;
+				color: #fff;
+			}
+			&.blue {
+				background-color: $blue;
+				color: #fff;
+			}
+		}
+
 	}
 
 

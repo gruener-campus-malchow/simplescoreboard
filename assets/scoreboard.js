@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (w) w.document.documentElement.style.fontSize = `${--size}px`;
 	}, 'small'));
 	const timerButton = createButton('start', e => {
+		if (!paused) addHistoryEntry('pause');
 		paused = !paused;
 		e.currentTarget.innerText = paused ? 'continue' : 'stop';
 		updateTimers();
@@ -68,8 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		paused = true;
 		timerButton.innerText = 'start';
 		updateTimers();
+		addHistoryEntry('new round');
 	}));
-	bottom.appendChild(createButton('new game', e => {
+	bottom.appendChild(createButton('new duel', e => {
 		tm = 0;
 		ts = 0;
 		wt.red = 0;
@@ -77,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		paused = true;
 		timerButton.innerText = 'start';
 		updateTimers();
-		document.querySelectorAll('.score-label').forEach(e => e.innerText = '00');
+		allWindows(win => win.document.querySelectorAll('.score-label').forEach(e => e.innerText = '00'));
+		allWindows(win => win.document.querySelector('.scoreboard .history').innerHTML = '');
 	}));
 	bottom.appendChild(createButton('+', e => {
 		if (w) w.document.documentElement.style.fontSize = `${++size}px`;
@@ -101,6 +104,33 @@ document.addEventListener('DOMContentLoaded', () => {
 		// warning timers
 		setText('.warning-label.red', (wt.red > 0) ? wt.red.toString().padStart(2, '0') : '');
 		setText('.warning-label.blue', (wt.blue > 0) ? wt.blue.toString().padStart(2, '0') : '');
+	}
+
+
+	document.addEventListener('click', e => {
+		if (e.target.nodeName != 'BUTTON') return;
+		if (!e.target.classList.contains('red') && !e.target.classList.contains('blue')) return;
+
+		addHistoryEntry(e.target.innerText).forEach(element => {
+			element.classList.toggle('red', e.target.classList.contains('red'));
+			element.classList.toggle('blue', e.target.classList.contains('blue'));
+		});
+
+	});
+
+
+	function addHistoryEntry(text) {
+		let elements = [];
+		allWindows(win => {
+			const history = win.document.querySelector('.scoreboard .history');
+			const element = win.document.createElement('DIV');
+			element.classList.add('entry');
+			element.innerText = text;
+			history.appendChild(element);
+			history.scrollTo({left: history.scrollWidth, behavior: 'smooth'});
+			elements.push(element);
+		});
+		return elements;
 	}
 
 
@@ -153,6 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	function setText(target, text) {
 		document.querySelector(target).dataset.content = text;
 		if (w) w.document.querySelector(target).dataset.content = text;
+	}
+
+	function allWindows(callback) {
+		callback(window);
+		if (w) callback(w);
 	}
 
 
