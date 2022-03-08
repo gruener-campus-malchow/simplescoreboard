@@ -14,10 +14,17 @@ $history-font-size: 1.5rem;
 
 $control-gap: 1rem;
 
+@font-face {
+	font-family: 'Montserrat';
+	font-weight: 800;
+	font-style: normal;
+	src: local('Montserrat ExtraBold'), url('Montserrat-ExtraBold.otf') format('opentype');
+}
+
 body {
 	margin: 0;
 	background: #000;
-	font-family: 'Montserrat', 'Ubuntu', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 800;
 
 	height: 100vh;
