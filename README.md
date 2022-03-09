@@ -1,5 +1,7 @@
 ![logo](docs/logo.svg)
 
+(Deutsche Anleitung)[#Deutsch]
+
 # English
 
 This project aims to develop a scoreboard for wrestling tournaments. Use it with a second mirrored screen *or* two full screen windows.
