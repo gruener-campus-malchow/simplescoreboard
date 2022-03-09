@@ -1,6 +1,6 @@
 ![logo](docs/logo.svg)
 
-(Deutsche Anleitung)[Deutsch]
+[Deutsche Anleitung](#Deutsch)
 
 # English
 
