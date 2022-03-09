@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const timerButton = createButton('start', e => {
 		if (!paused) addHistoryEntry('pause');
 		paused = !paused;
-		e.currentTarget.innerText = paused ? 'continue' : 'stop';
+		e.currentTarget.innerText = paused ? 'continue' : 'pause';
 		updateTimers();
 	});
 	bottom.appendChild(timerButton);
