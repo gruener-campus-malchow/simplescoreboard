@@ -163,3 +163,14 @@ document.addEventListener('click', e => {
 	if (!e.target.classList.contains('red') && !e.target.classList.contains('blue')) return;
 	scoreboard.history.add(e.target.innerText, e.target.classList.contains('red') ? 'red' : e.target.classList.contains('blue') ? 'blue' : '');
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelectorAll('input.name-label').forEach(label => label.addEventListener('change', e => {
+		if (scoreboard.windows.length > 1) scoreboard.windows.slice(1).forEach(w => {
+			w.document.getElementsByClassName(label.className)[0].value = label.value;
+			e.preventDefault();
+		});
+
+	}));
+
+});
