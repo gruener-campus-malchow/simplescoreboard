@@ -1,5 +1,5 @@
 
-let createElement = (tagName, content, className = '') => {
+const createElement = (tagName, content, className = '') => {
 	const elem = document.createElement(tagName);
 	elem.innerText = content;
 	elem.className = className;
@@ -7,7 +7,7 @@ let createElement = (tagName, content, className = '') => {
 };
 
 
-let scoreboard = {
+const scoreboard = {
 	windows: [
 		window
 	],
