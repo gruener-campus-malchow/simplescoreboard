@@ -1,231 +1,165 @@
 
-document.addEventListener('DOMContentLoaded', () => {
-	let w;
-	const controls = document.querySelector('.controls');
-
-	// timer
-	let tm=0, ts=0, paused = true;
-	// warnings
-	let wt = { 'red': 0, 'blue': 0 };
-
-	document.querySelectorAll('.fancy-animation').forEach(e => {
-		e.dataset.content = e.innerText;
-		registerDigits(e);
-	});
-
-	controls.appendChild(createButton('pop out', e => {
-		w = window.open('', 'simplescoreboardpopup', 'popup');
-		w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>simplescoreboard</title><link rel="stylesheet" href="assets/scoreboard.css"></head><body></body></html>`);
-		w.document.body.innerHTML = '';
-
-		const template = document.querySelector('.scoreboard');
-		const copy = template.cloneNode(true);
-		copy.classList.remove('editable');
-		w.document.body.appendChild(copy);
-
-		w.document.querySelectorAll('.fancy-animation').forEach(e => registerDigits(e) );
-
-		w.document.addEventListener('click', e => {
-			w.document.documentElement.requestFullscreen();
-		});
-	}));
-
-	const top = createRow();
-	const middle = createRow();
-	const bottom = createRow();
-	controls.append(top, middle, bottom);
-
-	let createPlayerControls = color => {
-		for (b of ['+1', '+2', '+4', '+5']) {
-			top.appendChild(createScoreButton(b, color));
-			middle.appendChild(createScoreButton(-b, color));
-		}
-		top.appendChild(createButton('warning', e => {
-			wt[color] = 30;
-			updateTimers();
-		}, color));
-		middle.appendChild(createButton('end warning', e => {
-			wt[color] = 0;
-			updateTimers();
-		}, color));
-	}
-	createPlayerControls('red');
-	createPlayerControls('blue');
-
-	let size = 16;
-	bottom.appendChild(createButton('-', e => {
-		if (w) w.document.documentElement.style.fontSize = `${--size}px`;
-	}, 'small'));
-	const timerButton = createButton('start', e => {
-		if (!paused) addHistoryEntry('pause');
-		paused = !paused;
-		e.currentTarget.innerText = paused ? 'continue' : 'pause';
-		updateTimers();
-	});
-	bottom.appendChild(timerButton);
-	bottom.appendChild(createButton('new round', e => {
-		tm = 0;
-		ts = 0;
-		paused = true;
-		timerButton.innerText = 'start';
-		updateTimers();
-		addHistoryEntry('new round');
-	}));
-	bottom.appendChild(createButton('new duel', e => {
-		tm = 0;
-		ts = 0;
-		wt.red = 0;
-		wt.blue = 0;
-		paused = true;
-		timerButton.innerText = 'start';
-		updateTimers();
-		allWindows(win => win.document.querySelectorAll('.score-label').forEach(e => e.innerText = '00'));
-		allWindows(win => win.document.querySelector('.scoreboard .history').innerHTML = '');
-	}));
-	bottom.appendChild(createButton('+', e => {
-		if (w) w.document.documentElement.style.fontSize = `${++size}px`;
-	}, 'small'));
-
-	setInterval(() => {
-		if (paused) return;
-
-		ts ++;
-		if (ts > 59) {
-			ts = 0;
-			tm ++;
-		}
-		wt.red --;
-		wt.blue --;
-		updateTimers();
-	}, 1000);
-	function updateTimers() {
-		// main timer
-		setText('.timer', `${tm.toString().padStart(2, '0')}:${ts.toString().padStart(2, '0')}`);
-		// warning timers
-		setText('.warning-label.red', (wt.red > 0) ? wt.red.toString().padStart(2, '0') : '');
-		setText('.warning-label.blue', (wt.blue > 0) ? wt.blue.toString().padStart(2, '0') : '');
-	}
+let createElement = (tagName, content, className = '') => {
+	const elem = document.createElement(tagName);
+	elem.innerText = content;
+	elem.className = className;
+	return elem;
+};
 
 
-	document.addEventListener('click', e => {
-		if (e.target.nodeName != 'BUTTON') return;
-		if (!e.target.classList.contains('red') && !e.target.classList.contains('blue')) return;
-
-		addHistoryEntry(e.target.innerText).forEach(element => {
-			element.classList.toggle('red', e.target.classList.contains('red'));
-			element.classList.toggle('blue', e.target.classList.contains('blue'));
-		});
-
-	});
+let scoreboard = {
+	windows: [
+		window
+	],
+	zoom: 16,
 
 
-	function addHistoryEntry(text) {
-		let elements = [];
-		allWindows(win => {
-			const history = win.document.querySelector('.scoreboard .history');
-			const element = win.document.createElement('DIV');
-			element.classList.add('entry');
-			element.innerText = text;
-			history.appendChild(element);
-			history.scrollTo({left: history.scrollWidth, behavior: 'smooth'});
-			elements.push(element);
-		});
-		return elements;
-	}
+	animate: (elem, content) => {
+		const oldContent = elem.dataset.content || elem.innerText || '00';
+		elem.dataset.content = content;
 
+		elem.innerHTML = '';
+		const inner = createElement('div', '', 'inner');
+		elem.appendChild(inner);
 
-	initNameLabel('.scoreboard .name-label.red');
-	initNameLabel('.scoreboard .name-label.blue');
-	function initNameLabel(selector) {
-		const label = document.querySelector(selector);
-		label.addEventListener('change', e => {
-			if (!w) return;
+		Array.from(content).forEach((letter, i) => {
+			const oldLetter = createElement('span', oldContent[i] || ' ', 'letter-old');
+			const newLetter = createElement('span', letter, 'letter-new');
+			inner.append(oldLetter, newLetter);
 
-			w.document.querySelector(selector).value = label.value;
-			e.preventDefault();
-		});
-	}
-
-
-	function createScoreButton(amount, color) {
-		return createButton(amount, e => {
-			changeScore(document.querySelector(`.scoreboard .score-label.${color}`), parseInt(amount));
-			if (w) changeScore(w.document.querySelector(`.scoreboard .score-label.${color}`), parseInt(amount));
-			if (parseInt(amount) > 0) wt[color] = 0;
-			updateTimers();
-		}, `small ${color}`);
-
-		function changeScore(e, s) {
-			const value = (parseInt(e.dataset.content) || 0) + s;
-			e.dataset.content = value.toString().padStart(2, '0');
-		}
-	}
-
-
-
-	function createButton(text, callback, classList = '') {
-		const b = document.createElement('button');
-		b.type = 'button';
-		b.innerText = text;
-		b.className = classList;
-		b.addEventListener('click', callback);
-
-		return b;
-	}
-
-	function createRow() {
-		const r = document.createElement('div');
-		r.classList.add('row');
-		return r;
-	}
-
-
-	function setText(target, text) {
-		document.querySelector(target).dataset.content = text;
-		if (w) w.document.querySelector(target).dataset.content = text;
-	}
-
-	function allWindows(callback) {
-		callback(window);
-		if (w) callback(w);
-	}
-
-
-
-	function registerDigits(elem) {
-		// thanks to https://stackoverflow.com/a/41425087
-		new MutationObserver(mutations => {
-		  mutations.forEach(mutation => {
-			if (mutation.type === 'attributes' && mutation.attributeName === 'data-content') {
-				if (mutation.oldValue == elem.dataset.content) return;
-
-				elem.innerHTML = '';
-				const inner = document.createElement('div');
-				inner.classList.add('inner');
-				elem.appendChild(inner);
-
-				for (i in elem.dataset.content) {
-					const oldLetter = document.createElement('span');
-					const newLetter = document.createElement('span');
-					oldLetter.classList.add('letter-old');
-					newLetter.classList.add('letter-new');
-					oldLetter.innerText = mutation.oldValue[i] || elem.dataset.content[i];
-					newLetter.innerText = elem.dataset.content[i];
-					inner.append(oldLetter, newLetter);
-
-					if (mutation.oldValue[i] && elem.dataset.content[i] != mutation.oldValue[i]) {
-						setTimeout(() => {
-							oldLetter.style.transform = `translateY(-100%)`;
-							newLetter.style.transform = `translateY(0)`;
-						}, (elem.dataset.content.length - i) * 60);
-					}
-				}
+			if (oldContent[i] && letter != oldContent[i]) {
+				setTimeout(() => {
+					oldLetter.style.transform = `translateY(-100%)`;
+					newLetter.style.transform = `translateY(0)`;
+				}, (elem.dataset.content.length - i) * 60);
 			}
-		  });
-		}).observe(elem, {
-			attributes: true,
-			attributeOldValue: true
 		});
-	}
 
+	},
+	animateAll: (selector, content) => {
+		scoreboard.windows.forEach(w => scoreboard.animate(w.document.querySelector(selector), content));
+	},
+
+
+	click: {
+		popout: () => {
+			const w = window.open('', 'simplescoreboardpopup', 'popup');
+			w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>simplescoreboard</title><link rel="stylesheet" href="assets/scoreboard.css"></head><body></body></html>`);
+			w.document.body.innerHTML = '';
+
+			const template = document.querySelector('.scoreboard');
+			const copy = template.cloneNode(true);
+			copy.classList.remove('editable');
+			w.document.body.appendChild(copy);
+
+			w.document.addEventListener('click', e => {
+				w.document.documentElement.requestFullscreen();
+			});
+
+			scoreboard.windows.push(w);
+		},
+
+		timer: caller => {
+			if (scoreboard.timer.interval) {
+				scoreboard.history.add('pause');
+				scoreboard.timer.stop();
+				caller.innerText = 'continue';
+			} else {
+				scoreboard.timer.start();
+				caller.innerText = 'pause';
+			}
+		},
+
+		round: () => {
+			scoreboard.timer.reset();
+			document.querySelector('.timer-button').innerHTML = 'start';
+			scoreboard.history.add('new round');
+		},
+
+		duel: () => {
+			scoreboard.timer.reset();
+			document.querySelector('.timer-button').innerHTML = 'start';
+			scoreboard.players.all.forEach(p => {
+				p.increaseScore(-p.score);
+				p.setWarning(0);
+			});
+
+			scoreboard.history.clear();
+		},
+
+		zoom: delta => scoreboard.windows.slice(-1).pop().document.documentElement.style.fontSize = `${scoreboard.zoom += delta}px`
+	},
+
+
+	players: {
+		red: () => scoreboard.players.all.filter(p => p.color == 'red')[0],
+		blue: () => scoreboard.players.all.filter(p => p.color == 'blue')[0],
+
+		all: [],
+		new: (color) => ({
+			color: color,
+			warning: 0,
+			score: 0,
+
+			increaseScore: function (s) {
+				this.score += s;
+				scoreboard.animateAll('.score-label.' + this.color, this.score.toString().padStart(2, '0'));
+				if (s > 0) this.setWarning(0);
+			},
+
+			setWarning: function (w) {
+				this.warning = Math.max(w, 0);
+				scoreboard.animateAll('.warning-label.' + this.color, this.warning > 0 ? this.warning.toString().padStart(2, '0') : '  ');
+			}
+		})
+	},
+
+
+	timer: {
+		minutes: 0,
+		seconds: 0,
+		time: () => `${scoreboard.timer.minutes.toString().padStart(2, '0')}:${scoreboard.timer.seconds.toString().padStart(2, '0')}`,
+		interval: null,
+
+		tick: () => {
+			scoreboard.timer.seconds ++;
+			if (scoreboard.timer.seconds > 59) {
+				scoreboard.timer.minutes ++;
+				scoreboard.timer.seconds = 0;
+			}
+			scoreboard.animateAll('.timer', scoreboard.timer.time());
+
+			scoreboard.players.all.filter(p => p.warning > 0).forEach(p => p.setWarning(p.warning - 1));
+		},
+
+		start: () => {
+			if (!scoreboard.timer.interval) scoreboard.timer.interval = setInterval(scoreboard.timer.tick, 1000);
+		},
+
+		stop: () => {
+			clearInterval(scoreboard.timer.interval);
+			scoreboard.timer.interval = null;
+		},
+
+		reset: () => {
+			scoreboard.timer.stop();
+			scoreboard.timer.minutes = scoreboard.timer.seconds = 0;
+			scoreboard.animateAll('.timer', scoreboard.timer.time());
+		}
+	},
+
+	history: {
+		add: (text, className = '') => scoreboard.windows.forEach(w => w.document.querySelector('.history').append(createElement('div', text, 'entry ' + className))),
+		clear: (text, className = '') => scoreboard.windows.forEach(w => w.document.querySelector('.history').innerHTML = '')
+	}
+};
+
+scoreboard.players.all.push(scoreboard.players.new('red'));
+scoreboard.players.all.push(scoreboard.players.new('blue'));
+
+
+document.addEventListener('click', e => {
+	if (e.target.nodeName != 'BUTTON') return;
+	if (!e.target.classList.contains('red') && !e.target.classList.contains('blue')) return;
+	scoreboard.history.add(e.target.innerText, e.target.classList.contains('red') ? 'red' : e.target.classList.contains('blue') ? 'blue' : '');
 });

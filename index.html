@@ -20,7 +20,45 @@
 			<div class="history"></div>
 		</div>
 
-		<div class="controls"></div>
+		<div class="controls">
+			<div class="row">
+				<button onclick="scoreboard.click.popout()">pop out</button>
+			</div>
+
+			<div class="row">
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(1)">+1</button>
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(2)">+2</button>
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(4)">+4</button>
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(5)">+5</button>
+				<button class="red" onclick="scoreboard.players.red().setWarning(30)">warning</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(1)">+1</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(2)">+2</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(4)">+4</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(5)">+5</button>
+				<button class="blue" onclick="scoreboard.players.blue().setWarning(30)">warning</button>
+			</div>
+
+			<div class="row">
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(-1)">-1</button>
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(-2)">-2</button>
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(-4)">-4</button>
+				<button class="small red" onclick="scoreboard.players.red().increaseScore(-5)">-5</button>
+				<button class="red" onclick="scoreboard.players.red().setWarning(0)">end warning</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(-1)">-1</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(-2)">-2</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(-4)">-4</button>
+				<button class="small blue" onclick="scoreboard.players.blue().increaseScore(-5)">-5</button>
+				<button class="blue" onclick="scoreboard.players.blue().setWarning(0)">end warning</button>
+			</div>
+
+			<div class="row">
+				<button class="small" onclick="scoreboard.click.zoom(-1)">-</button>
+				<button class="timer-button" onclick="scoreboard.click.timer(this)">start</button>
+				<button onclick="scoreboard.click.round()">new round</button>
+				<button onclick="scoreboard.click.duel()">new duel</button>
+				<button class="small" onclick="scoreboard.click.zoom(+1)">+</button>
+			</div>
+		</div>
 
 	</body>
 </html>
