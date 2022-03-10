@@ -149,7 +149,11 @@ const scoreboard = {
 	},
 
 	history: {
-		add: (text, className = '') => scoreboard.windows.forEach(w => w.document.querySelector('.history').append(createElement('div', text, 'entry ' + className))),
+		add: (text, className = '') => scoreboard.windows.forEach(w => {
+			const h = w.document.querySelector('.history')
+			h.append(createElement('div', text, 'entry ' + className));
+			h.scrollTo({left: h.scrollWidth, behavior: 'smooth'});
+		}),
 		clear: (text, className = '') => scoreboard.windows.forEach(w => w.document.querySelector('.history').innerHTML = '')
 	}
 };
