@@ -1,4 +1,4 @@
-![logo](docs/logo.svg)
+[![logo](docs/logo.svg)](https://gruener-campus-malchow.github.io/simplescoreboard/)
 
 [Deutsche Anleitung](#Deutsch)
 
