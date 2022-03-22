@@ -88,7 +88,10 @@ const scoreboard = {
 			scoreboard.history.clear();
 		},
 
-		zoom: delta => scoreboard.windows.slice(-1).pop().document.documentElement.style.fontSize = `${scoreboard.zoom += delta}px`
+		zoom: delta => {
+			scoreboard.windows.slice(-1).pop().document.documentElement.style.fontSize = `${scoreboard.zoom += delta}px`,
+			scoreboard.history.scroll('auto');
+		}
 	},
 
 
@@ -155,9 +158,9 @@ const scoreboard = {
 			scoreboard.history.scroll();
 		}),
 		clear: (text, className = '') => scoreboard.windows.forEach(w => w.document.querySelector('.history').innerHTML = ''),
-		scroll: () => scoreboard.windows.forEach(w => {
+		scroll: (behavior = 'smooth') => scoreboard.windows.forEach(w => {
 			const h = w.document.querySelector('.history');
-			h.scrollTo({left: h.scrollWidth, behavior: 'smooth'});
+			h.scrollTo({left: h.scrollWidth, behavior: behavior});
 		})
 	}
 };
