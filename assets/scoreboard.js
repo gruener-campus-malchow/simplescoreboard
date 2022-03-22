@@ -56,7 +56,7 @@ const scoreboard = {
 				w.document.documentElement.requestFullscreen();
 			});
 
-			scoreboard.windows.push(w);
+			if (!scoreboard.windows.includes(w)) scoreboard.windows.push(w);
 		},
 
 		timer: caller => {
