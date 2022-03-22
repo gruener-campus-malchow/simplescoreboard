@@ -57,6 +57,7 @@ const scoreboard = {
 			});
 
 			if (!scoreboard.windows.includes(w)) scoreboard.windows.push(w);
+			scoreboard.history.scroll();
 		},
 
 		timer: caller => {
@@ -150,11 +151,14 @@ const scoreboard = {
 
 	history: {
 		add: (text, className = '') => scoreboard.windows.forEach(w => {
-			const h = w.document.querySelector('.history')
-			h.append(createElement('div', text, 'entry ' + className));
-			h.scrollTo({left: h.scrollWidth, behavior: 'smooth'});
+			w.document.querySelector('.history').append(createElement('div', text, 'entry ' + className));
+			scoreboard.history.scroll();
 		}),
-		clear: (text, className = '') => scoreboard.windows.forEach(w => w.document.querySelector('.history').innerHTML = '')
+		clear: (text, className = '') => scoreboard.windows.forEach(w => w.document.querySelector('.history').innerHTML = ''),
+		scroll: () => scoreboard.windows.forEach(w => {
+			const h = w.document.querySelector('.history');
+			h.scrollTo({left: h.scrollWidth, behavior: 'smooth'});
+		})
 	}
 };
 
