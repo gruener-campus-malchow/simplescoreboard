@@ -193,22 +193,12 @@ input, button {
 }
 
 
-@mixin button($color) {
-	margin: 0;
-	padding: .5em 1em;
-	border: .2rem solid $color;
-	color: $color;
-	background: none;
-	border-radius: .5rem;
-
-	&:hover, &:focus {
-		background-color: $color;
-		color: #000;
-	}
-}
 
 .controls {
-	margin: 1rem;
+	margin-top: 1rem;
+	padding: 1rem;
+	background-color: #fff;
+	border-radius: 1rem 1rem 0 0;
 	display: flex;
 	flex-direction: column;
 	gap: $control-gap;
@@ -216,18 +206,30 @@ input, button {
 	flex-shrink: 0;
 
 	button {
-		@include button(#fff);
 
-		&.red {
-			@include button($red);
-		}
-
-		&.blue {
-			@include button($blue);
-		}
-
+		margin: 0;
+		padding: .5em 1em;
+		border: .2rem solid;
+		color: #000;
+		background: none;
+		border-radius: .5rem;
+		box-shadow: 0 .25rem;
 		font: inherit;
+		transition: .2s;
 		flex: 1 0 0;
+
+		&.red { color: $red }
+		&.blue { color: $blue }
+
+		&:hover {
+			box-shadow: 0 .5rem;
+			transform: translateY(-.25rem);
+		}
+
+		&:active {
+			box-shadow: 0 0;
+			transform: translateY(.25rem);
+		}
 
 		&.small {
 			flex-grow: 0;
