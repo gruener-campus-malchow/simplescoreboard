@@ -40,5 +40,10 @@ Wir haben das simplescoreboard überarbeitet, [hier gibt es die alte Version.](h
 
 ~~Es gibt ein paar kleine Fehler. Lade im Zweifelsfall die Seite neu.~~ Es gibt keine Fehler. Die Software ist perfekt. – [eintyp](https://github.com/eintyp)
 
-![redesign](docs/scoreboard.png)
+![screenshot of redesign with controls](docs/scoreboard-controls.png)
+*Redesign with controls*
+
+![screenshot of redesign, just the scoreboard](docs/scoreboard.png)
+*Redesign, scoreboard only*
+
 ![old version](docs/photo.jpg)
