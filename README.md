@@ -47,3 +47,4 @@ Wir haben das simplescoreboard überarbeitet, [hier gibt es die alte Version.](h
 *Redesign, scoreboard only*
 
 ![old version](docs/photo.jpg)
+*Old version, demo of split screen setup*
